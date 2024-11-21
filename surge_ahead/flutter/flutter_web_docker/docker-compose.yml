@@ -1,0 +1,42 @@
+# This Docker Compose file defines a multi-container application with two services: flutter and redis.
+# 
+# Services:
+# 1. flutter:
+#    - Builds the Docker image from the current directory.
+#    - Runs in a container named 'flutter_app'.
+#    - Exposes port 9000 on the host and maps it to port 80 in the container.
+#    - Connects to the 'flutter-redis-network'.
+#    - Depends on the 'redis' service to be started first.
+#
+# 2. redis:
+#    - Uses the latest Redis image from Docker Hub.
+#    - Runs in a container named 'redis'.
+#    - Exposes port 6379 on the host and maps it to port 6379 in the container.
+#    - Connects to the 'flutter-redis-network'.
+#
+# Networks:
+# - flutter-redis-network: A custom bridge network that allows communication between the flutter and redis services.
+
+version: '3.8'
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    networks:
+      - flutter-redis-network
+    ports:
+      - "6379:6379"
+
+  flutter:
+    build: .
+    container_name: flutter_app
+    ports:
+      - "9000:80"
+    networks:
+      - flutter-redis-network
+    depends_on:
+      - redis
+
+networks:
+  flutter-redis-network:
+    driver: bridge

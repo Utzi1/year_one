@@ -1,0 +1,51 @@
+# Use the official Ubuntu 20.04 as the base image
+FROM ubuntu:20.04 AS build
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    git \
+    unzip \
+    xz-utils \
+    zip \
+    libglu1-mesa \
+    openjdk-8-jdk
+
+# Install Flutter SDK
+RUN git clone https://github.com/flutter/flutter.git /flutter && \
+    /flutter/bin/flutter --version
+
+# Set Flutter environment variables
+ENV PATH="/flutter/bin:/flutter/bin/cache/dart-sdk/bin:${PATH}"
+
+# Pre-download Flutter dependencies
+RUN flutter precache
+
+# Copy the application source code to the container
+COPY . /app
+
+# Set the working directory
+WORKDIR /app
+
+# Get Flutter packages
+RUN flutter pub get
+
+# Build the Flutter web application
+RUN flutter build web
+
+# Use a lightweight web server to serve the Flutter web application
+FROM nginx:alpine
+
+# Copy the build output to the Nginx html directory
+COPY --from=build /app/build/web /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]

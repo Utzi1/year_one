@@ -1,0 +1,1 @@
+ /Users/utzrieger/year_one/surge_ahead/flutter/flutter_web_docker/.dart_tool/flutter_build/45f97018cfa02aaef77e5f40df2a37aa/native_assets.yaml: 

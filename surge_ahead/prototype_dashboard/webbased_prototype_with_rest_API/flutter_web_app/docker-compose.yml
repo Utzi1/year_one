@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  flutter-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.flutter
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
