@@ -64,3 +64,14 @@ Franz ist da und kann uns helfen das zu verstehen.
 
 # Datentypen in der Erhebung
 Da muss am ende wirklich klar sein, was genau erhoben wird (auch typen)
+
+# Telefonat 2024-11-26
+Mit Christoph Leinert
+
+Termin mit Genia und Gabi gemacht, Montag nächste Woche.
+
+# Treffen 2024-11-28 mit dem ZKS
+
+CE-Zdertificate -> Software ist Medizinprodukt Ist sehr aufwending und ZKS kann da nicht unterstützen.
+
+ZKS kann bei intern verwendenten produkten helfen (Sonstige Klinische Prüfungen).

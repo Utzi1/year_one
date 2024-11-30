@@ -1,0 +1,4 @@
+What is your name?|text
+How old are you?|text
+What is your favorite color?|dropdown|Red|Green|Blue
+Select your hobbies|checkbox|Reading|Traveling|Cooking

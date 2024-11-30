@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning, shadows}
+
+\tikzstyle{container} = [rectangle, rounded corners, minimum width=4cm, minimum height=2cm, text centered, draw=black, fill=blue!20, drop shadow]
+\tikzstyle{component} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!20, drop shadow]
+\tikzstyle{arrow} = [thick,->,>=stealth, draw=black!60, fill=black!20]
+
+\begin{document}
+\begin{tikzpicture}[node distance=3cm]
+
+% Docker Containers
+\node (DataInputToolContainer) [container] {Data Input Tool \\ (Docker Container)};
+\node (RestApiContainer) [container, right of=DataInputToolContainer, xshift=6cm] {REST API \\ (Docker Container)};
+\node (RedisContainer) [container, right of=RestApiContainer, xshift=6cm] {Redis Database \\ (Docker Container)};
+
+% Components inside Docker Containers
+\node (DataInputTool) [component, below of=DataInputToolContainer, yshift=1cm] {Data Input Tool};
+\node (RestApi) [component, below of=RestApiContainer, yshift=1cm] {REST API};
+\node (Redis) [component, below of=RedisContainer, yshift=1cm] {Redis Database};
+
+% Arrows
+\draw [arrow] (DataInputTool) -- (RestApi) node[midway, above] {HTTP Requests};
+\draw [arrow] (RestApi) -- (Redis) node[midway, above] {Data Storage};
+
+% Labels
+\node [below of=DataInputTool, yshift=1cm] {User Input};
+\node [below of=RestApi, yshift=1cm] {API Requests};
+\node [below of=Redis, yshift=1cm] {Data Storage};
+
+\end{tikzpicture}
+\end{document}
