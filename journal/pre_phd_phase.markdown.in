@@ -1,0 +1,25 @@
+## User ───
+
+Was ist eine rest api
+
+## Copilot ───
+
+Eine REST API (Representational State Transfer Application Programming Interface) ist eine Schnittstelle, die es ermöglicht, über das HTTP-Protokoll auf Webressourcen zuzugreifen und diese zu manipulieren. REST APIs folgen bestimmten Prinzipien und Konventionen, die sie leicht verständlich und benutzbar machen. Hier sind einige der Hauptmerkmale:
+
+1. **Ressourcenbasierte Architektur**: Jede Ressource (z.B. Benutzer, Artikel)wird durch eine eindeutige URL identifiziert.
+2. **HTTP-Methoden**: REST APIs verwenden HTTP-Methoden, um Operationen auf Ressourcen durchzuführen:
+   - `GET`: Abrufen von Ressourcen
+   - `POST`: Erstellen neuer Ressourcen
+   - `PUT`: Aktualisieren bestehender Ressourcen
+   - `DELETE`: Löschen von Ressourcen
+3. **Stateless**: Jede Anfrage an die API muss alle Informationen enthalten, die notwendig sind, um sie zu verstehen und zu verarbeiten. Der Server speichert keine Sitzungsinformationen zwischen den Anfragen.
+4. **Repräsentationen**: Ressourcen können in verschiedenen Formaten dargestellt werden, z.B. JSON oder XML.
+5. **Hypermedia as the Engine of Application State (HATEOAS)**: Clients erhalten Informationen darüber, wie sie durch die API navigieren können, durch Links in den Antworten.
+
+Ein einfaches Beispiel für eine REST API könnte so aussehen:
+
+- `GET /users`: Liste aller Benutzer abrufen
+- `POST /users`: Einen neuen Benutzer erstellen
+- `GET /users/{id}`: Details eines bestimmten Benutzers abrufen
+- `PUT /users/{id}`: Einen bestimmten Benutzer aktualisieren
+- `DELETE /users/{id}`: Einen bestimmten Benutzer löschen

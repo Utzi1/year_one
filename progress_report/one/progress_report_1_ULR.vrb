@@ -1,0 +1,14 @@
+\frametitle{Flutter}
+\begin{block}{Flutter}
+        Dart-based SDK for building applications.
+    \end{block}
+    \begin{block}{Used by:}
+        \begin{itemize}
+            \item Google
+            \item BMW
+            \item Alibaba
+            \item ByteDance
+            \item Tencent
+        \end{itemize}
+    \end{block}
+
