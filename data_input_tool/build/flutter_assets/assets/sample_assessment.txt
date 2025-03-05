@@ -1,0 +1,3 @@
+What is your name?|text
+How old are you?|number
+Rate your experience|select|Good|Average|Poor

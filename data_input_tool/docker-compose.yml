@@ -1,0 +1,30 @@
+version: '3'
+services:
+  flutter-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.flutter
+    environment:
+      TZ: Europe/Berlin
+    ports:
+      - "8080:80"
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      TZ: Europe/Berlin
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    environment:
+      TZ: Europe/Berlin
+    ports:
+      - "6379:6379"

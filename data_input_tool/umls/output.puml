@@ -1,0 +1,182 @@
+@startuml
+class MockApiService {
+---
+}
+Mock <|-- MockApiService
+MockApiService ..|> ApiService
+class MockApiService {
+---
+}
+Mock <|-- MockApiService
+MockApiService ..|> ApiService
+class MockApiService {
+---
+}
+Mock <|-- MockApiService
+MockApiService ..|> ApiService
+class MockApiService {
+---
+}
+Mock <|-- MockApiService
+MockApiService ..|> ApiService
+class AssessmentAge {
+---
+assessmentKey(): String
+build(): Widget
+}
+AssessmentBase <|-- AssessmentAge
+class AssessmentColor {
+---
+assessmentKey(): String
+build(): Widget
+}
+AssessmentBase <|-- AssessmentColor
+abstract class AssessmentBase {
+---
+controller: TextEditingController
+assessmentKey(): String
+}
+StatelessWidget <|-- AssessmentBase
+AssessmentBase ..> TextEditingController
+class AssessmentPage {
+---
+id: String
+createState(): _AssessmentPageState
+}
+StatefulWidget <|-- AssessmentPage
+class _AssessmentPageState {
+---
+assessmentValueController: TextEditingController
+selectedAssessmentKey: String?
+assessments: List<AssessmentBase>
+dispose(): void
+saveAssessment(): void
+build(): Widget
+}
+State <|-- _AssessmentPageState
+_AssessmentPageState ..> TextEditingController
+class MyHomePage {
+---
+build(): Widget
+}
+StatelessWidget <|-- MyHomePage
+class AssessmentName {
+---
+assessmentKey(): String
+build(): Widget
+}
+AssessmentBase <|-- AssessmentName
+class CreatePatientForm {
+---
+createState(): _CreatePatientFormState
+}
+StatefulWidget <|-- CreatePatientForm
+class _CreatePatientFormState {
+---
+-idController: TextEditingController
+-nameController: TextEditingController
+-response: String
+-_createPatient(): void
+build(): Widget
+dispose(): void
+}
+State <|-- _CreatePatientFormState
+_CreatePatientFormState ..> TextEditingController
+class MyApp {
+---
+build(): Widget
+}
+StatelessWidget <|-- MyApp
+class ApiService {
+---
+baseUrl: String
+postKeyValue(): Map<String, dynamic
+postHashMap(): Map<String, dynamic
+getHashMap(): Map<String, dynamic
+createPatient(): Map<String, dynamic
+getAssessments(): MapString, dynamic[0..*]
+}
+class AssessmentsFromText {
+---
+filePath: String
+onSubmit:  Function(String)
+createState(): State<AssessmentsFromText
+}
+StatefulWidget <|-- AssessmentsFromText
+class _AssessmentsFromTextState {
+---
+-queries: List<Map<String, dynamic>>
+-isLoading: bool
+initState(): void
+-_loadQueries(): void
+-_parseQueries(): MapString, dynamic[0..*]
+-_submitData(): void
+build(): Widget
+}
+State <|-- _AssessmentsFromTextState
+class IdentifierInput {
+---
+controller: TextEditingController
+onSubmit:  Function(String)
+build(): Widget
+}
+StatelessWidget <|-- IdentifierInput
+IdentifierInput ..> TextEditingController
+class KeyValueForm {
+---
+onSubmit:  Function(Map<String, String>)
+createState(): _KeyValueFormState
+}
+StatefulWidget <|-- KeyValueForm
+class _KeyValueFormState {
+---
+-keyControllers: List<TextEditingController>
+-valueControllers: List<TextEditingController>
+-_addKeyValuePair(): void
+-_submit(): void
+build(): Widget
+dispose(): void
+}
+State <|-- _KeyValueFormState
+class KeyValueManager {
+---
+createState(): State<KeyValueManager
+}
+StatefulWidget <|-- KeyValueManager
+class _KeyValueManagerState {
+---
+-identifierController: TextEditingController
+-patientNameController: TextEditingController
+-response: String
+-hashmap: Map<String, String>
+-_postData(): void
+-_loadData(): void
+build(): Widget
+dispose(): void
+}
+State <|-- _KeyValueManagerState
+_KeyValueManagerState ..> TextEditingController
+class QueryInput {
+---
+query: String
+type: String
+options: List<String>?
+createState(): _QueryInputState
+}
+StatefulWidget <|-- QueryInput
+class _QueryInputState {
+---
+-controller: TextEditingController
+-selectedOption: String?
+-selectedCheckboxes: Map<String, bool>
+initState(): void
+dispose(): void
+build(): Widget
+-_buildInputField(): Widget
+-_buildDropdown(): Widget
+-_buildMultipleChoice(): Widget
+-_buildCheckboxes(): Widget
+}
+State <|-- _QueryInputState
+_QueryInputState ..> TextEditingController
+@enduml
