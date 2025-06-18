@@ -1,0 +1,3506 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 96,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 105,
+      "title": "Medizinische Basisdaten",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "id": 60,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "text": {
+          "titleSize": 15,
+          "valueSize": 15
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "dx tx",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Diagnosen",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 4,
+        "y": 1
+      },
+      "id": 61,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "text": {
+          "titleSize": 15,
+          "valueSize": 15
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "ops_name",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        },
+        {
+          "command": "hget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "load",
+          "hide": false,
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "B",
+          "type": "command"
+        }
+      ],
+      "title": "Prozeduren",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "css_data": ".meds div {\n    padding: 10px;\n    background-color: white;\n    border-bottom: 1px solid #d4d4d4;\n    font-size: 0.5vw;\n\n}\n\n.med-list div {\n  padding: 10px;\n  background-color: #fff;\n  border-bottom: 1px solid #d4d4d4;\n}\n\n.med-list div div {\n    padding : 0px;\n  background-color: #fff;\n  border-bottom: 0px solid #d4d4d4;\n}\n\n#med-list-container{\n    height: 300px;\n    overflow: scroll;\n    overflow-x: hidden;\n}\n\n.tg-031e-head{\n    font-weight: bold;\n}\n\n\n.mo-avail:hover {\n    background-color: #c1d0f7;\n}\n\n\n.source {\n    display: block;\n    width: 100%;\n    padding-top: 5px;\n    text-align: center;\n}\n.source > input{ /* HIDE RADIO */\n    visibility: hidden; /* Makes input not-clickable */\n    position: absolute; /* Remove input from document flow */\n}\n.source > input + div{ /* DIV STYLES */\n    cursor:pointer;\n    border:1px solid black;\n    border-radius: 6px;\n    padding: 2px;\n    width: 90%;\n}\n.source > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */\n    background-color: #ffd6bb;\n    border: 1px solid #ff6600;\n}\n\n\n\n.tg {border-collapse:collapse;border-spacing:0;}\n\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal; border-color: black;}\n\n.tg .forta-D{color:#fe0000}\n.tg .forta-C{color:#fea100}\n\n\n\n",
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 13,
+        "w": 5,
+        "x": 9,
+        "y": 1
+      },
+      "handleMetric": {},
+      "html_data": "<div style=\"display:flex\">\n    <label class=\"source\">\n        <input type=\"radio\" name=\"source\" value=\"0\" checked=\"true\">\n        <div>FORTA Probleme</div>\n    </label>\n    <label class=\"source\">\n        <input type=\"radio\" name=\"source\" value=\"1\">\n        <div>Vollständige Medikation</div>\n    </label>\n</div>\n\n</br>\n\n\n<div id=\"only_forta\" style=\"height: 330px; overflow-y: scroll;\">\n\n    <table class=\"tg\">\n    <tr title=\"FORTA (Fit fOr The Aged) ist eine Positiv- und Negativ-Liste für die Klassifikation von Arzneimitteln zur Behandlung von Älteren in Abhängigkeit von spezifischen Diagnosen. &#010;&#010;A: Besonders vorteilhaft, B: vorteilhaft, C: Fragwürdig, D: Vermeiden. &#010;&#010;Nähere Informationen und die aktuelle Version der FORTA-Liste finden Sie unter dem Link.\">\n    <th class=\"tg-031e-head\"><strong>Medikation</th>\n    <th class=\"tg-031e-head mo-avail\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.umm.uni-heidelberg.de/experimentelle-pharmakologie/research/gruppe-wehling/\" style=\"display:block;\"><strong>FORTA</a></th>\n    </tr>\n    <tr>\n        <td class=\"forta-D\" title=\"UAW Gewöhnung, ggf. langsam reduzieren, wenn lange eingenommen\">Lorazepam 1mg 0-0-1</td>\n        <td class=\"forta-D\" title=\"UAW Gewöhnung, ggf. langsam reduzieren, wenn lange eingenommen\">D für Schlaf</td>\n    </tr>\n    <tr>\n        <td class=\"forta-D\" title=\"UAW Interaktionen, Absetzen erwägen\">Johanniskraut Kps 100mg</td>\n        <td class=\"forta-D\" title=\"UAW Interaktionen, Absetzen erwägen\">D für Depr</td>\n    </tr>\n    <tr>\n        <td class=\"forta-D\" title=\"Indikation DOAK?\">ASS 100mg</td>\n        <td class=\"forta-D\" title=\"Indikation DOAK?\">D für VHF</td>\n    </tr>\n    <tr>\n        <td class=\"forta-C\" title=\"UAW Intox bei ANV/ Akkumulation, Spiegel bestimmen, Dosis reduzieren\">Digitoxin 0,25mg 1-0-0</td>\n        <td class=\"forta-C\" title=\"UAW Intox bei ANV/ Akkumulation, Spiegel bestimmen, Dosis reduzieren\">C für HI und VHF</td>\n    </tr>\n    <tr>\n        <td class=\"forta-C\" title=\"UAW anticholinerg/ Delir\">Trimipramin 25mg 0-0-1</td>\n        <td class=\"forta-C\" title=\"UAW anticholinerg/ Delir\">C für Schlaf</td>\n    </tr>\n    <tr>\n        <td class=\"forta-C\" title=\"UAW FRID/Hypotonie\">Doxzosin 2mg 1-0-0</td>\n        <td class=\"forta-C\" title=\"UAW FRID/Hypotonie\">C für aHT</td>\n    </tr>\n\n    </table>\n\n</div> \n\n\n\n\n\n<div id=\"all_meds\" style=\"height: 330px; overflow-y: scroll;\">\n\n    <table class=\"tg\">\n        <tr title=\"FORTA (Fit fOr The Aged) ist eine Positiv- und Negativ-Liste für die Klassifikation von Arzneimitteln zur Behandlung von Älteren in Abhängigkeit von spezifischen Diagnosen. &#010;&#010;A: Besonders vorteilhaft, B: vorteilhaft, C: Fragwürdig, D: Vermeiden. &#010;&#010;Nähere Informationen und die aktuelle Version der FORTA-Liste finden Sie unter dem Link.\">\n        <th class=\"tg-031e-head\"><strong>Medikation</th>\n        <th class=\"tg-031e-head mo-avail\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.umm.uni-heidelberg.de/experimentelle-pharmakologie/research/gruppe-wehling/\" style=\"display:block;\"><strong>FORTA</a></th>\n        </tr>\n        <tr>\n            <td class=\"forta-D\" title=\"UAW Gewöhnung, ggf. langsam reduzieren, wenn lange eingenommen\">Lorazepam 1mg 0-0-1</td>\n            <td class=\"forta-D\" title=\"UAW Gewöhnung, ggf. langsam reduzieren, wenn lange eingenommen\">D für Schlaf</td>\n        </tr>\n        <tr>\n            <td class=\"forta-D\" title=\"UAW Interaktionen, Absetzen erwägen\">Johanniskraut Kps 100mg</td>\n            <td class=\"forta-D\" title=\"UAW Interaktionen, Absetzen erwägen\">D für Depr</td>\n        </tr>\n        <tr>\n            <td class=\"forta-D\" title=\"Indikation DOAK?\">ASS 100mg</td>\n            <td class=\"forta-D\" title=\"Indikation DOAK?\">D für VHF</td>\n        </tr>\n        <tr>\n            <td class=\"forta-C\" title=\"UAW Intox bei ANV/ Akkumulation, Spiegel bestimmen, Dosis reduzieren\">Digitoxin 0,25mg 1-0-0</td>\n            <td class=\"forta-C\" title=\"UAW Intox bei ANV/ Akkumulation, Spiegel bestimmen, Dosis reduzieren\">C für HI und VHF</td>\n        </tr>\n        <tr>\n            <td class=\"forta-C\" title=\"UAW anticholinerg/ Delir\">Trimipramin 25mg 0-0-1</td>\n            <td class=\"forta-C\" title=\"UAW anticholinerg/ Delir\">C für Schlaf</td>\n        </tr>\n        <tr>\n            <td class=\"forta-C\" title=\"UAW FRID/Hypotonie\">Doxzosin 2mg 1-0-0</td>\n            <td class=\"forta-C\" title=\"UAW FRID/Hypotonie\">C für aHT</td>\n        </tr>\n        <tr>\n            <td class=\"tg-iulr\" title=\"UAW Hyponatriämie\">HCT 25mg 1-0-0</td>\n            <td class=\"tg-iulr\" title=\"UAW Hyponatriämie\">B für HI und aHT</td>\n        </tr>\n        <tr>\n            <td class=\"tg-031e\">Ramipril 5mg 1-0-0</td>\n            <td class=\"tg-031e\">A für aHT</td>\n        </tr>\n    \n        <tr>\n            <td class=\"tg-031e\">Neu: Jonosteril 1L 1-0-1</td>\n            <td class=\"tg-031e\"></td>\n        </tr>\n        </table>\n    \n</div> ",
+      "id": 10,
+      "js_code": "",
+      "js_init_code": "htmlnode.getElementById('all_meds').style.display = \"none\";\n\nhtmlnode.querySelectorAll('input[name=\"source\"]').forEach(e => {\n    e.addEventListener('change', function() {\n        if (this.value == 0) {\n            htmlnode.getElementById('only_forta').style.display = \"block\";\n            htmlnode.getElementById('all_meds').style.display = \"none\";\n        } else {\n            htmlnode.getElementById('only_forta').style.display = \"none\";\n            htmlnode.getElementById('all_meds').style.display = \"block\";\n        }\n    });\n});",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "adm_age dx_code tx_code",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        },
+        {
+          "command": "",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "query": "FT.SEARCH medis_index \"@patient:$Patient @slot:latest\" NOCONTENT LIMIT 0 2000 SORTBY position ASC",
+          "refId": "B",
+          "type": "cli"
+        }
+      ],
+      "title": "Medikation",
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "series",
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hämoglobin in g/dl"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MCV in fl"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Leukozyten in Giga/l"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CRP in mg/l"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀⠀"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FA6400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Kreatinin in µmol/l"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀⠀⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eGFR in ml/min"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀⠀⠀⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Natrium in mol/l"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀⠀⠀⠀⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Kalium in mol/l"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀⠀⠀⠀⠀⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Albumin in g/dl"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Blutzucker in mg/dl"
+            },
+            "properties": [
+              {
+                "id": "custom.axisLabel",
+                "value": "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "MCV in fl",
+                  "Leukozyten in Giga/l"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 10,
+        "x": 14,
+        "y": 1
+      },
+      "id": 75,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "keyName": "UsabilityWorkshop:hemoglobin",
+          "legend": "Hämoglobin in g/dl",
+          "query": "",
+          "refId": "A",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:mcv",
+          "legend": "MCV in fl",
+          "query": "",
+          "refId": "B",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:leukocytes",
+          "legend": "Leukozyten in Giga/l",
+          "query": "",
+          "refId": "C",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:crp",
+          "legend": "CRP in mg/l",
+          "query": "",
+          "refId": "D",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:creatinin",
+          "legend": "Kreatinin in µmol/l",
+          "query": "",
+          "refId": "E",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:egfr",
+          "legend": "eGFR in ml/min",
+          "query": "",
+          "refId": "F",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:natrium",
+          "legend": "Natrium in mol/l",
+          "query": "",
+          "refId": "G",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:potassium",
+          "legend": "Kalium in mol/l",
+          "query": "",
+          "refId": "H",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:albumin",
+          "legend": "Albumin in g/dl",
+          "query": "",
+          "refId": "I",
+          "type": "timeSeries"
+        },
+        {
+          "command": "ts.range",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "UsabilityWorkshop:sugar",
+          "legend": "Blutzucker in mg/dl",
+          "query": "",
+          "refId": "J",
+          "type": "timeSeries"
+        }
+      ],
+      "title": "Laborwerte",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "time",
+                "Hämoglobin in g/dl",
+                "MCV in fl",
+                "Leukozyten in Giga/l",
+                "CRP in mg/l",
+                "Kreatinin in µmol/l",
+                "Natrium in mol/l",
+                "Kalium in mol/l",
+                "Albumin in g/dl",
+                "Blutzucker in mg/dl"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "css_data": ".meds div {\n    padding: 10px;\n    background-color: white;\n    border-bottom: 1px solid #d4d4d4;\n    font-size: 0.5vw;\n\n}\n\n.med-list div {\n  padding: 10px;\n  background-color: #fff;\n  border-bottom: 1px solid #d4d4d4;\n}\n\n.med-list div div {\n    padding : 0px;\n  background-color: #fff;\n  border-bottom: 0px solid #d4d4d4;\n}\n\n#med-list-container{\n    height: 300px;\n    overflow: scroll;\n    overflow-x: hidden;\n}\n\n.tg-031e-head{\n    font-weight: bold;\n}\n\n\n.mo-avail:hover {\n    background-color: #c1d0f7;\n}\n\n\n.source {\n    display: block;\n    width: 100%;\n    padding-top: 5px;\n    text-align: center;\n}\n.source > input{ /* HIDE RADIO */\n    visibility: hidden; /* Makes input not-clickable */\n    position: absolute; /* Remove input from document flow */\n}\n.source > input + div{ /* DIV STYLES */\n    cursor:pointer;\n    border:1px solid black;\n    border-radius: 6px;\n    padding: 2px;\n    width: 90%;\n}\n.source > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */\n    background-color: #ffd6bb;\n    border: 1px solid #ff6600;\n}\n\n\n\n.tg {border-collapse:collapse;border-spacing:0;}\n\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal; border-color: black;}\n\n\n\n\n",
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 5
+      },
+      "handleMetric": {},
+      "html_data": "<!-- <div class=\"center\">\n    <style type=\"text/css\">\n    .tg  {border-collapse:collapse;border-spacing:0;}\n    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n    .tg .tg-i0og{color:#000000}\n    .tg .tg-6dv9{color:#000000;text-align:right}\n    </style>\n    <table class=\"tg\">\n      <tr>\n        <th class=\"tg-6dv9\">RR</th>\n        <th class=\"tg-i0og\">100/60</th>\n      </tr>\n      <tr>\n        <td class=\"tg-6dv9\">HF</td>\n        <td class=\"tg-i0og\">90/min</td>\n      </tr>\n      <tr>\n        <td class=\"tg-6dv9\">SaO2</td>\n        <td class=\"tg-i0og\">90%</td>\n      </tr>\n      <tr>\n        <td class=\"tg-6dv9\">Temp</td>\n        <td class=\"tg-i0og\">37,6°C</td>\n      </tr>\n      <tr>\n        <td class=\"tg-6dv9\">Gewicht</td>\n        <td class=\"tg-i0og\">52kg</td>\n      </tr>\n      <tr>\n        <td class=\"tg-6dv9\">Größe</td>\n        <td class=\"tg-i0og\">165cm</td>\n      </tr>\n    </table>\n</div> -->\n\n\n\n\nWerte vom: 16.04.2024\n<div id=\"only_forta\" style=\"height: 360px; overflow-y: scroll;\">\n\n    <table class=\"tg\">\n    <tr>\n        <th class=\"tg-031e-head\"><strong>RR</th>\n        <th class=\"tg-031e-head\"><strong>HF</th>\n        <th class=\"tg-031e-head\"><strong>SaO2</th>\n        <th class=\"tg-031e-head\"><strong>Temp</th>\n    </tr>\n    <tr>\n        <td class=\"forta-D\">100/60</td>\n        <td class=\"forta-D\">90/min</td>\n        <td class=\"forta-D\">90%</td>\n        <td class=\"forta-D\">37,6°C</td>\n    </tr>\n\n    </table>\n\n</div> ",
+      "id": 91,
+      "js_code": "",
+      "js_init_code": "",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "title": "Vitalwerte",
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [],
+          "mappings": [],
+          "noValue": "Nicht erfasst",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Körpergröße"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "cm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Körpergewicht"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "masskg"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "isolation"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "keine Isolation"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "auf Isolationsstation"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "noValue",
+                "value": "-"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "BMI"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "text",
+                      "value": 20.5
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 5,
+        "y": 5
+      },
+      "id": 20,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "text": {
+          "titleSize": 15,
+          "valueSize": 15
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "birthday size:preop weight:preop bmi:preop isolation adm_age",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Basisdaten",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "size:preop",
+                "weight:preop",
+                "bmi:preop",
+                "adm_age"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "adm_age": 0,
+              "birthday": 1,
+              "bmi:preop": 4,
+              "isolation": 5,
+              "size:preop": 2,
+              "weight:preop": 3
+            },
+            "renameByName": {
+              "AGE": "Alter",
+              "DOC": "Aufenthaltsdauer",
+              "Value": "Körpergewicht",
+              "adm_age": "Alter bei Aufnahme",
+              "birthday": "Geburtsjahr",
+              "bmi": "BMI",
+              "bmi:preop": "BMI",
+              "hmget · AGE": "Alter",
+              "hmget · DOC": "Aufenthaltsdauer",
+              "hmget · size": "Körpergröße",
+              "isolation": " Isolationsstatus",
+              "patient14:weight · value": "Gewicht",
+              "patient1:weight · value": "Gewicht",
+              "preop:size": "Größe",
+              "preop:weight": "Gewicht",
+              "size": "Körpergröße",
+              "size:preop": "Körpergröße",
+              "value": "Gewicht",
+              "weight": "Körpergewicht",
+              "weight:preop": "Körpergewicht"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "css_data": ".meds div {\n    padding: 10px;\n    background-color: white;\n    border-bottom: 1px solid #d4d4d4;\n    font-size: 0.5vw;\n\n}\n\n.med-list div {\n  padding: 10px;\n  background-color: #fff;\n  border-bottom: 1px solid #d4d4d4;\n}\n\n.med-list div div {\n    padding : 0px;\n  background-color: #fff;\n  border-bottom: 0px solid #d4d4d4;\n}\n\n#med-list-container{\n    height: 300px;\n    overflow: scroll;\n    overflow-x: hidden;\n}\n\n.tg-031e-head{\n    font-weight: bold;\n}\n\n\n.mo-avail:hover {\n    background-color: #c1d0f7;\n}\n\n\n.source {\n    display: block;\n    width: 100%;\n    padding-top: 5px;\n    text-align: center;\n}\n.source > input{ /* HIDE RADIO */\n    visibility: hidden; /* Makes input not-clickable */\n    position: absolute; /* Remove input from document flow */\n}\n.source > input + div{ /* DIV STYLES */\n    cursor:pointer;\n    border:1px solid black;\n    border-radius: 6px;\n    padding: 2px;\n    width: 90%;\n}\n.source > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */\n    background-color: #ffd6bb;\n    border: 1px solid #ff6600;\n}\n\n\n\n.tg {border-collapse:collapse;border-spacing:0;}\n\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal; border-color: black;}\n\n\n\n\n",
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 9,
+        "w": 9,
+        "x": 0,
+        "y": 10
+      },
+      "handleMetric": {},
+      "html_data": "\n<div style=\"height: 310px; overflow-y: scroll;\">\n\n    <table class=\"tg\">\n        <tr>\n            <td class=\"forta-D mo-avail\" title=\"tgl. Monitoring Vitalzeichen\">Art. Hypertonus (Chirurg. Aufnahmebefund)</td>\n        </tr>\n        <tr>\n            <td class=\"forta-D\" title=\"\">Schlafstörungen (Chirurg. Aufnahmebefund)</td>\n        </tr>\n        <tr>\n            <td class=\"forta-D mo-avail\" title=\"Hinweis: bitte Gewichtskontrolle alle 2 Tage anordnen.\">Herzinsuffizienz (Anästhesie Prämedikation)</td>\n        </tr>\n        <tr>\n            <td class=\"forta-C mo-avail\" title=\"Hinweis: Frequnzkontrolle ausreichend? Orale Antikoagulation möglich? &#010;&#010;Meta-Empfehlung: In older adults with atrial fibrillation, oral anticoagulation should generally be recommended for stroke prevention, with possible exceptions in patients with both a CHA2DS2-VASc score < 2 and a HAS-BLED score > 2.\">Vorhofflimmern (Chirurgischer Aufnahmenbericht)</td>\n        </tr>\n        <tr>\n            <td class=\"forta-C mo-avail\" title=\"KDOQI Grad 4 &#010;&#010;Meta-Empfehlung: When prescribing medications for older adults, renal function should be assessed using creatinine-correcting equations and serum concentration levels for drugs with a narrow therapeutic range regularly monitored to ensure patient safety\">Niereninsuffizienz n Cockroft Gault eGFR 27,06 ml/min (Labor)</td>\n        </tr>\n        <tr>\n            <td class=\"forta-C\" title=\"\">Diagnostizierte Demenz bekannt (Fremdanamnese Angehörige)</td>\n        </tr>\n  \n        </table>\n    \n  </div> \n  \n  ",
+      "id": 98,
+      "js_code": "",
+      "js_init_code": "",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "title": "Vorerkrankungen/Multimorbidität/Nebendiagnosen",
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "aliasColors": {},
+      "css_data": ".column {\n  float: left;\n  width: 50%;\n}\n\n.row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n.tooltip {\n  position: relative;\n  display: inline-block;\n  border-bottom: 1px dotted black;\n}\n\n.tooltip .tooltiptext {\n  visibility: hidden;\n  width: 120px;\n  background-color: black;\n  color: #fff;\n  text-align: center;\n  border-radius: 6px;\n  padding: 5px 0;\n\n  /* Position the tooltip */\n  position: absolute;\n  z-index: 1;\n}\n\n.tooltip:hover .tooltiptext {\n  visibility: visible;\n}",
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 9,
+        "y": 14
+      },
+      "handleMetric": {},
+      "html_data": "<div class=\"row\" title=\"Die Krankheitssymptome dieser Personengruppe sind gut kontrolliert, aber außer Gehen im Rahmen von Alltagsaktivitäten bewegen sie sich nicht regelmäßig.\">\n    <div class=\"column\">\n        <center>\n        <img>\n        <svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewbox=\"0 0 200 220\" height=\"100px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n            <g><path style=\"opacity:1\" fill=\"#cadcea\" d=\"M -0.5,-0.5 C 57.5,-0.5 115.5,-0.5 173.5,-0.5C 173.5,79.1667 173.5,158.833 173.5,238.5C 115.5,238.5 57.5,238.5 -0.5,238.5C -0.5,158.833 -0.5,79.1667 -0.5,-0.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#08090a\" d=\"M 89.5,36.5 C 106.193,36.8971 111.693,44.8971 106,60.5C 94.9363,69.8642 85.9363,68.1975 79,55.5C 77.8565,46.4431 81.3565,40.1098 89.5,36.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#070809\" d=\"M 96.5,104.5 C 90.7711,104.788 85.1045,104.454 79.5,103.5C 75.9934,98.4905 72.9934,93.1572 70.5,87.5C 69.8333,86.1667 69.1667,86.1667 68.5,87.5C 70.3156,92.7451 71.8156,98.0784 73,103.5C 74.3076,105.641 75.8076,107.641 77.5,109.5C 75.5824,112.583 74.2491,115.917 73.5,119.5C 76.3437,131.208 79.3437,142.875 82.5,154.5C 80.286,168.832 78.1193,183.165 76,197.5C 75.0027,199.323 73.8361,200.99 72.5,202.5C 67.2374,204.288 63.4041,202.622 61,197.5C 62.0014,183.656 63.5014,169.823 65.5,156C 64.3782,147.679 62.5449,139.512 60,131.5C 59.7645,129.881 58.9311,128.881 57.5,128.5C 56.4324,127.566 55.099,127.232 53.5,127.5C 53.1936,130.385 53.5269,133.052 54.5,135.5C 55.0508,138.807 55.3841,142.14 55.5,145.5C 56.4445,150.861 56.4445,156.195 55.5,161.5C 53.5629,173.458 51.7295,185.458 50,197.5C 46.0662,204.158 41.3996,204.824 36,199.5C 35.077,197.966 34.577,196.299 34.5,194.5C 35.7079,182.661 37.5412,170.994 40,159.5C 40.7625,155.413 40.5958,151.413 39.5,147.5C 39.473,141.949 38.8063,136.616 37.5,131.5C 36.8183,125.173 36.6516,118.839 37,112.5C 41.8023,97.5773 47.1356,82.9106 53,68.5C 59.1271,61.8519 66.6271,59.3519 75.5,61C 78.1513,63.9804 81.1513,66.647 84.5,69C 86.3453,70.128 88.3453,70.628 90.5,70.5C 91.1105,75.6551 89.9438,80.3218 87,84.5C 84.7632,82.3529 82.7632,80.0196 81,77.5C 82.4816,81.4761 84.3149,85.4761 86.5,89.5C 94.8303,90.7066 103.164,90.7066 111.5,89.5C 118.093,89.6691 120.593,93.0024 119,99.5C 117.833,100.667 116.667,101.833 115.5,103C 109.133,103.293 102.8,103.793 96.5,104.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#53575b\" d=\"M 98.5,108.5 C 99.8333,108.5 101.167,108.5 102.5,108.5C 100.735,109.461 98.7354,109.795 96.5,109.5C 96.7373,110.791 96.404,111.791 95.5,112.5C 95.5,111.167 95.5,109.833 95.5,108.5C 96.5,108.5 97.5,108.5 98.5,108.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#090b0b\" d=\"M 98.5,158.5 C 97.111,163.269 96.4443,168.269 96.5,173.5C 94.7763,182.284 93.6097,191.284 93,200.5C 91.7365,202.607 89.9032,203.607 87.5,203.5C 85.4548,198.785 84.9548,193.785 86,188.5C 89.0914,163.126 92.2581,137.792 95.5,112.5C 96.404,111.791 96.7373,110.791 96.5,109.5C 98.7354,109.795 100.735,109.461 102.5,108.5C 103.156,109.622 103.489,110.955 103.5,112.5C 102.554,122.861 101.554,133.195 100.5,143.5C 99.5655,144.568 99.2322,145.901 99.5,147.5C 110.5,147.5 121.5,147.5 132.5,147.5C 132.737,146.209 132.404,145.209 131.5,144.5C 129.983,132.449 128.149,120.449 126,108.5C 125.167,106.333 123.667,104.833 121.5,104C 123.451,102.266 124.451,100.099 124.5,97.5C 129.305,98.1323 132.472,100.799 134,105.5C 138.664,134.155 143.331,162.822 148,191.5C 148.667,194.833 148.667,198.167 148,201.5C 145.28,204.319 142.947,203.986 141,200.5C 138.973,185.506 136.473,170.673 133.5,156C 121.838,155.5 110.171,155.333 98.5,155.5C 98.5,156.5 98.5,157.5 98.5,158.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#c2d3e0\" d=\"M 96.5,104.5 C 97.5981,105.397 97.5981,106.23 96.5,107C 97.4158,107.278 98.0825,107.778 98.5,108.5C 97.5,108.5 96.5,108.5 95.5,108.5C 95.5,109.833 95.5,111.167 95.5,112.5C 92.2581,137.792 89.0914,163.126 86,188.5C 84.9548,193.785 85.4548,198.785 87.5,203.5C 87.4142,204.496 87.7476,205.329 88.5,206C 87.5509,206.617 86.7175,206.451 86,205.5C 85.6667,206.167 85.3333,206.833 85,207.5C 83.329,203.412 80.4957,202.246 76.5,204C 77.6537,203.086 77.487,202.253 76,201.5C 75.6667,202.167 75.3333,202.833 75,203.5C 74.3292,202.748 73.4959,202.414 72.5,202.5C 73.8361,200.99 75.0027,199.323 76,197.5C 78.1193,183.165 80.286,168.832 82.5,154.5C 79.3437,142.875 76.3437,131.208 73.5,119.5C 74.2491,115.917 75.5824,112.583 77.5,109.5C 75.8076,107.641 74.3076,105.641 73,103.5C 71.8156,98.0784 70.3156,92.7451 68.5,87.5C 69.1667,86.1667 69.8333,86.1667 70.5,87.5C 72.9934,93.1572 75.9934,98.4905 79.5,103.5C 85.1045,104.454 90.7711,104.788 96.5,104.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#151718\" d=\"M 82.5,110.5 C 84.9479,109.527 87.6146,109.194 90.5,109.5C 90.7989,111.604 90.4656,113.604 89.5,115.5C 87.3134,113.578 84.9801,111.912 82.5,110.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#171919\" d=\"M 108.5,113.5 C 110.735,114.286 111.735,115.952 111.5,118.5C 111.547,121.073 110.547,123.073 108.5,124.5C 107.54,120.861 107.54,117.195 108.5,113.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#575e61\" d=\"M 57.5,128.5 C 56.5,128.5 55.5,128.5 54.5,128.5C 54.5,130.833 54.5,133.167 54.5,135.5C 53.5269,133.052 53.1936,130.385 53.5,127.5C 55.099,127.232 56.4324,127.566 57.5,128.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#80898e\" d=\"M 37.5,131.5 C 38.8063,136.616 39.473,141.949 39.5,147.5C 38.0427,142.402 37.376,137.069 37.5,131.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#8c979d\" d=\"M 100.5,143.5 C 100.5,144.5 100.5,145.5 100.5,146.5C 111.221,147.142 121.554,146.475 131.5,144.5C 132.404,145.209 132.737,146.209 132.5,147.5C 121.5,147.5 110.5,147.5 99.5,147.5C 99.2322,145.901 99.5655,144.568 100.5,143.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#879098\" d=\"M 55.5,145.5 C 56.5263,148.457 57.193,151.624 57.5,155C 57.5033,157.484 56.8366,159.651 55.5,161.5C 56.4445,156.195 56.4445,150.861 55.5,145.5 Z\"/></g>\n            <g><path style=\"opacity:1\" fill=\"#909aa1\" d=\"M 98.5,158.5 C 98.5557,163.731 97.889,168.731 96.5,173.5C 96.4443,168.269 97.111,163.269 98.5,158.5 Z\"/></g>\n            </svg>\n        </img>\n        </center>\n    </div>\n    <div class=\"column\">\n        <div style=\"font-size:2vw\">5</div>\n        <div>Mittelgradig frail</div>\n    </div>\n</div> \n",
+      "id": 86,
+      "js_code": "",
+      "js_init_code": "",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "title": "Frailty",
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "1 Sehr fit"
+                },
+                "2": {
+                  "color": "super-light-green",
+                  "index": 1,
+                  "text": "2 Durchschnittlich aktiv"
+                },
+                "3": {
+                  "color": "super-light-red",
+                  "index": 2,
+                  "text": "3 Gut zurechtkommend"
+                },
+                "4": {
+                  "color": "light-red",
+                  "index": 3,
+                  "text": "4 Vulnerabel"
+                },
+                "5": {
+                  "color": "semi-dark-red",
+                  "index": 4,
+                  "text": "5 Geringgradig frail"
+                },
+                "6": {
+                  "color": "dark-red",
+                  "index": 5,
+                  "text": "6 Mittelgradig frail"
+                },
+                "7": {
+                  "color": "dark-red",
+                  "index": 6,
+                  "text": "7 Ausgeprägt frail"
+                },
+                "8": {
+                  "color": "dark-purple",
+                  "index": 7,
+                  "text": "8 Extrem frail"
+                },
+                "9": {
+                  "color": "dark-purple",
+                  "index": 8,
+                  "text": "9 Terminal erkrankt"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 9,
+          "min": 0,
+          "noValue": "Nicht erfasst",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "super-light-green",
+                "value": 2
+              },
+              {
+                "color": "super-light-red",
+                "value": 3
+              },
+              {
+                "color": "light-red",
+                "value": 4
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 5
+              },
+              {
+                "color": "dark-red",
+                "value": 6
+              },
+              {
+                "color": "semi-dark-purple",
+                "value": 8
+              },
+              {
+                "color": "dark-purple",
+                "value": 9
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ISAR Score"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 2
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 6
+              },
+              {
+                "id": "mappings",
+                "value": []
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 14,
+        "y": 14
+      },
+      "id": 67,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "isar",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "ISAR Score",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "isar": false
+            },
+            "indexByName": {},
+            "renameByName": {
+              "cfs": "Klinische Frailty Skala",
+              "cfs:preop": "Klinische Frailty Skala",
+              "cfs:prior": "Klinische Frailty Skala",
+              "hfrs": "Hospital Frailty Risk Score",
+              "isar": "ISAR Score",
+              "life_space": "New Mobility Score"
+            }
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 93,
+      "panels": [],
+      "title": "Lebenssituation und Funktion",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "css_data": "",
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 0,
+        "y": 20
+      },
+      "handleMetric": {},
+      "html_data": "<p>Pflegegrad 2, lebte alleine zu Hause, kein PD, 3 Treppenstufen zur Haustür, 3 Angehörige mit regelmäßigem Kontakt</p>",
+      "id": 53,
+      "js_code": "",
+      "js_init_code": "",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "sex social:source social:assessor social:comment social:grade social:gradelevel social:accomodation social:other_accomodation social:living social:other_living social:stairs social:num_stairs social:lift social:indoor_stairs social:contacts social:num_contacts social:freq social:other_freq social:tools social:other_tools social:help social:help_from social:other_help social:help_with social:other_help_with",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Sozialanamnese",
+      "transformations": [],
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "aliasColors": {},
+      "css_data": "span{\n    color: red;\n}\n\n#text{\n    font-size: \n}",
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 5,
+        "y": 20
+      },
+      "handleMetric": {},
+      "html_data": "Die Patientin wünscht sich für die aktuelle Behandlung: Wiedererlangung von Selbstständigkeit und Mobilität im Alltag, auch wenn dies eine längere Behandlung erfordert und möglichst rasche Rückkehr in das gewohnte Lebensumfeld. Ziele nach der aktuellen Behandlung sind: In der eigenen Wohnung ohne Unterstützung leben können und wieder in die Kirche gehen zu können. ",
+      "id": 54,
+      "js_code": "",
+      "js_init_code": "",
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Fragebogen",
+          "url": "/d/NTPlflmVk/patientenzentrierte-fragen?orgId=1&var-patient=UsabilityWorkshop&var-slot=preop"
+        }
+      ],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "sex patientcentered:goal_1  patientcentered:other_goal_1 patientcentered:goal_2  patientcentered:other_goal_2",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Patientenzentrierte Ziele",
+      "transformations": [],
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "aliasColors": {},
+      "css_data": "",
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 20
+      },
+      "handleMetric": {},
+      "html_data": "<p style=\"line-height:150%;margin-left:20px;margin-right:20px;\">Vordiagnose <strong>Demenz</strong> bekannt, subj. <strong>Gedächtnisverlust</strong> wird angegeben, hatte bereits einmal ein <strong>Delir</strong>.</p>",
+      "id": 89,
+      "js_code": "",
+      "js_init_code": "",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "malnutrition dysphagia",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Vorzustand Kognition",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "dysphagia": "Dysphagie",
+              "malnutrition": "Malnutrition"
+            }
+          }
+        }
+      ],
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "": {
+                  "color": "text",
+                  "index": 0,
+                  "text": "Nicht erfasst"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 5,
+          "min": 0,
+          "noValue": "Nicht erfasst",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 3
+              },
+              {
+                "color": "green",
+                "value": 4
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Kognition: MoCA5"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 0
+                    },
+                    {
+                      "color": "orange",
+                      "value": 7
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 16
+                    },
+                    {
+                      "color": "green",
+                      "value": 24
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 30
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Depression: PHQ4"
+            },
+            "properties": [
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 12
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 3
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Gedächtnisverlust"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 1
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Nein"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Ja"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Ja"
+                      },
+                      "99": {
+                        "color": "text",
+                        "index": 3,
+                        "text": "weiß nicht"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Delir zuvor"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 1
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Nein"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Ja"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Ja"
+                      },
+                      "99": {
+                        "color": "text",
+                        "index": 3,
+                        "text": "weiß nicht"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 20
+      },
+      "id": 68,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Fragebogen MoCa5",
+          "url": "/d/MGgCpzmVk/moca5?orgId=1&var-patient=UsabilityWorkshop&var-slot=preop"
+        },
+        {
+          "targetBlank": true,
+          "title": "Fragebogen PHQ4",
+          "url": "/d/rOIZBgb7z/phq4?orgId=1&var-patient=UsabilityWorkshop&var-slot=preop"
+        }
+      ],
+      "maxDataPoints": 3,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "moca:preop phq4:preop comorbidity:2:memory comorbidity:2:delir",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Demenz, Delir, Depression",
+      "transformations": [
+        {
+          "id": "concatenate",
+          "options": {
+            "frameNameLabel": "frame",
+            "frameNameMode": "drop"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "moca:preop",
+                "phq4:preop"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "minicog": 0,
+              "phq2": 2,
+              "value": 1
+            },
+            "renameByName": {
+              "comorbidity:2:delir": "Delir zuvor",
+              "comorbidity:2:memory": "Gedächtnisverlust",
+              "delir:1": "Gedächtnisverlusst",
+              "delir:2": "Delir zuvor",
+              "minicog": "Kognition: Mini-Cog",
+              "moca": "Kognition",
+              "moca:preop": "Kognition: MoCA5",
+              "phq2": "Depression: PHQ 2",
+              "phq4": "PHQ4",
+              "phq4:preop": "Depression: PHQ4",
+              "value": "Delir: 4AT"
+            }
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Meta-Empfehlung: Combinations of multiple central nervous system agents should be avoided, especially those involving benzodiazepines, non-benzodiazepine receptor agonists (“Z-drugs”), opioids, or anticholinergic drugs.",
+              "url": "/public/usability_workshop/BGU_ATZ_Delir.pdf"
+            }
+          ],
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "index": 0,
+                  "text": "V.a. Delir"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 26
+      },
+      "id": 80,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "delir_prediction",
+          "keyName": "11001",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Delir Risiko",
+      "type": "gauge"
+    },
+    {
+      "aliasColors": {},
+      "css_data": "#main{\n    display: grid;\n    grid-template-columns: 45% 45%;\n    column-gap: 10px;\n}\n\n#negative{\n    display: block;\n}\n\n#positive{\n    display: block;\n}\n\n.negative{\n    display: block;\n    border-radius: 6px;\n    padding: 2px;\n    background-color: #f2495c;\n    border: 1px solid red;\n    margin-top: 5px;\n}\n\n.positive{\n    border-radius: 6px;\n    padding: 2px;\n    background-color: #56a64b;\n    border: 1px solid green;\n    margin-top: 5px;\n}\n\n.hidden{\n    display: none;\n}",
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 26
+      },
+      "handleMetric": {},
+      "html_data": "<div id=\"main\">\n    <div id=\"negative\">\n        <div><strong>DELIROGEN</strong></div>\n        <div id=\"neg_1\" class=\"hidden\"></div>\n        <div id=\"neg_2\" class=\"hidden\"></div>\n        <div id=\"neg_3\" class=\"hidden\"></div>\n    </div>\n    <div id=\"positive\">\n        <div><strong>PROTEKTIV</strong></div>\n        <div id=\"pos_1\" class=\"hidden\"></div>\n        <div id=\"pos_2\" class=\"hidden\"></div>\n        <div id=\"pos_3\" class=\"hidden\"></div>\n    </div>\n</div>\n<p id=\"z\"></p>\n<p id=\"platt\"></p>",
+      "id": 78,
+      "js_code": "const coeff = {\"dementia\":2.53, \"bypass\":0.53, \"cst\":0.53, \"benzo\":0.42, \"asa\":0.39, \"fall\":0.31, \"iso\":0.15, \"cfs\":0.21, \"meds\":0.11, \"age\":0.10, \"cci\":0.14, \"gfr\":-0.03, \"moca_o\":-0.27, \"moca_v\":-0.13, \"moca_m\":-0.34};\nconst defaults = {\"dementia\":0, \"bypass\":0, \"cst\":146.0, \"benzo\":0, \"asa\":3, \"fall\":0, \"iso\":0, \"cfs:\":3, \"meds\":6.0, \"age\":934.0, \"cci\":1.0, \"gfr\":69.0, \"moca_o\":6, \"moca_v\":0, \"moca_m\":2};\nconst means = {\"dementia\":0, \"bypass\":0, \"cst\":146.05, \"benzo\":0, \"asa\":2.81, \"fall\":0, \"iso\":0, \"cfs\":3.62, \"meds\":6.09, \"age\":934.47, \"cci\":1.27, \"gfr\":69.21, \"moca_o\":5.85, \"moca_v\":0, \"moca_m\":2.24};\nconst sigma = {\"dementia\":1, \"bypass\":1, \"cst\":85.29, \"benzo\":1, \"asa\":0.6, \"fall\":1, \"iso\":1, \"cfs\":1.37, \"meds\":3.42, \"age\":58.86,\"cci\":1.35, \"gfr\":22.39, \"moca_o\":0.56, \"moca_v\":1, \"moca_m\":1.66};\nconst intercept = -0.61;\nconst neg_output = {\"dementia\":\"Demenz\",\"bypass\":\"Herz-Lungen-Maschine\",\"cst\":\"Lange Schnitt-Naht-Zeit\",\"benzo\":\"Benzodiazepine prä-OP\",\"asa\":\"Hoher ASA Score\",\"fall\":\"Stürze in der Anamnese\",\"iso\":\"Isolation\",\"cfs\":\"Gebrechlichkeit / Frailty\",\"meds\":\"Polypharmazie\",\"age\":\"Hohes Alter\",\"cci\":\"Multimorbidität\",\"gfr\":\"Schlechte Nierenfunktion\",\"moca_v\":\"Schlechte Wortflüssigkeit\",\"moca_o\":\"Desorientiert\",\"moca_m\":\"Unterdurchschnittliche Gedächtnisleistung\"};\nconst pos_output = {\"dementia\":\"Keine Demenz\",\"bypass\":\"Keine Herz-Lungen-Maschine\",\"cst\":\"Kurze Schnitt-Naht-Zeit\",\"benzo\":\"Keine Benzodiazepine prä-OP\",\"asa\":\"Geringer ASA Score\",\"fall\":\"Keine Stürze in letzter Zeit\",\"iso\":\"Keine Isolation\",\"cfs\":\"Geringer Frailty score\",\"meds\":\"Relativ wenig Medikamente\",\"age\":\"Relativ geringes Alter\",\"cci\":\"Wenige relevante Komorbiditäten\",\"gfr\":\"Gute Nierenfunktion\",\"moca_v\":\"Gute Wortflüssigkeit\",\"moca_o\":\"Gut orientiert\", \"moca_m\":\"Gute Gedächtnisleistung\"};\nconst tooltip_output = {\"dementia\":(x)=>{return \"\"}, \"bypass\":(x)=>{return \"\"},\"cst\":(x)=>{return x+\" Minuten\"},\"benzo\":(x)=>{return \"\"},\"asa\":(x)=>{return \"ASA Klasse \"+Math.round(x)},\"fall\":(x)=>{return Math.round(x)==1?\"1 Sturz\":(Math.round(x)+\" Stürze\")},\"iso\":(x)=>{return \"\"},\"cfs\":(x)=>{return \"Clinical Frailty Score \"+3+\" von 9 (1 = sehr fit, 9 = terminal erkrankt)\"},\"meds\":(x)=>{return 9+\" Medikament(e)\"},\"age\":(x)=>{return Math.floor(x/12)+\" Jahre alt\"},\"cci\":(x)=>{return \"Chalson Comorbidity Index = \"+x},\"grf\":(x)=>{return \"eGFR nach Cockroft-Gault: \"+x+\" ml/min\"},\"moca_v\":(x)=>{return \"MoCA Wortflüssigkeit: \"+Math.round(x)+\" Punkt(e) (1 = 11 oder mehr Tiernamen genannt, 0 = sonst)\"},\"moca_o\":(x)=>{return \"MoCA Orientierung: \"+Math.round(x)+\" von 6 Punkten\"},\"moca_m\":(x)=>{return \"MoCA Gedächtnis: \"+Math.round(x)+\" von 5 Punkten\"}};\n\nfunction platt_scaling (z){\n    return (1.0/(1.0+Math.pow(Math.E,((-0.97*z)+1.08)))); \n}\n\nfunction normalize_scale(x, key){\n    return coeff[key]*((x===\"\"?defaults[key]:x)-means[key])/sigma[key];\n}\n\nfunction restore_raw(x,key){\n    return (x*sigma[key]/coeff[key])+means[key];\n}\n\n\n\nvar hadamard = {};\nclearOutput();\n\n// Pre-OP Benzodiazepines & number of medications\nvar medis = ctrl.data.length==3?(ctrl.data[2].rows.map(x => x.Value)):null;\nhadamard.meds = normalize_scale(medis?parseInt(medis.splice(0,1)[0]):\"\", \"meds\");\nhadamard.benzo = normalize_scale(medis?([medis.map(x => (/^N05BA/).test(x.split(':').pop()))].includes(true)?1:0):\"\", \"benzo\");\nconsole.log(\"mdes:\" + hadamard.meds);\n// Dementia\nhadamard.dementia = normalize_scale(ctrl.data[0].rows[0][\"comorbidity:2:dementia\"]==\"1\"?1:(ctrl.data[0].rows[0][\"comorbidity:2:dementia\"]==\"0\"?0:\"\"), \"dementia\");\n\n// Cardio-Pulmonary Bypass\nhadamard.bypass = 0.0 // (not implemented) normalize_scale(ctrl.data[0].rows[0][\"comorbidity:1:bypass\"]==\"2\"?1:(ctrl.data[0].rows[0][\"comorbidity:1:bypass\"]==\"1\"?0:\"\"),\"bypass\");\n\n// Cut to suture\nhadamard.cst = normalize_scale(ctrl.data[0].rows[0].cut_to_suture?parseInt(ctrl.data[0].rows[0].cut_to_suture):\"\", \"cst\");\n\n\n\n// ASA Class \nhadamard.asa = normalize_scale(ctrl.data[0].rows[0].asa?parseInt(ctrl.data[0].rows[0].asa):\"\" , \"asa\");\n\n// Recent Fall\nhadamard.fall = normalize_scale(ctrl.data[0].rows[0][\"falls:1\"]?(parseInt(ctrl.data[0].rows[0][\"falls:1\"])==\"0\"?0:(parseInt(ctrl.data[0].rows[0][\"falls:1\"]<99?1:\"\"))):\"\", \"fall\");\n\n// Isolation\nhadamard.isolation = normalize_scale(ctrl.data[0].rows[0].isolation?(ctrl.data[0].rows[0].isolation==\"0\"?0:1):\"\", \"iso\");\n\n// Clinical Frailty Scale \nhadamard.cfs = normalize_scale(ctrl.data[0].rows[0][\"cfs:prior\"]?parseInt(ctrl.data[0].rows[0][\"cfs:prior\"]):\"\", \"cfs\");\n\n// Age \nhadamard.age = normalize_scale(ctrl.data[0].rows[0].adm_age?parseInt(ctrl.data[0].rows[0].adm_age)*12:\"\", \"age\");\n\n// Charlson Comorbidity Index (todo)\nlet infarction = [3,4].includes(ctrl.data[0].rows[0][\"comorbidity:1:stroke\"])?1:0;\nlet myocard = ctrl.data[0].rows[0][\"comorbidity:1:myocard\"]>1?1:0;\nlet avk = ctrl.data[0].rows[0][\"comorbidity:1:vascular\"]==3?1:0;\nlet apoplex = ctrl.data[0].rows[0][\"comorbidity:1:apoplextia\"] !== \"\"?1:0;\nlet dementia = ctrl.data[0].rows[0][\"comorbidity:1:dementia\"] == 1?1:0;\nlet copd = ctrl.data[0].rows[0][\"comorbidity:1:copd\"] == 1?1:0;\nlet diabetes = ctrl.data[0].rows[0][\"comorbidity:1:diabetes\"]>1?1:0;\nlet diabetes_complications = ctrl.data[0].rows[0][\"comorbidity:1:diabetes\"]==5?1:0;\nlet liver_child_a = ctrl.data[0].rows[0][\"comorbidity:1:liver\"] == 3?1:0;\nlet liver_child_b_c = ctrl.data[0].rows[0][\"comorbidity:1:liver\"]>3?1:0;\nlet renal = ctrl.data[0].rows[0][\"comorbidity:1:kidney\"]>1?1:0;\n\nlet multimorbidity_score = infarction+myocard+avk+apoplex+dementia+copd+diabetes+diabetes_complications+liver_child_a+(3*liver_child_b_c)+2*renal;\nconsole.log(\"CCI: \"+multimorbidity_score);\nhadamard.cci = normalize_scale(multimorbidity_score, \"cci\");\n// GFR\nhadamard.gfr = normalize_scale((ctrl.data.length==2 && ctrl.data[1].rows[0].value)?parseFloat(ctrl.data[1].rows[0].value):\"\", \"gfr\");\n\n// Moca todo adapt moca to delir!\nconsole.log(\"MOCA3: \"+ctrl.data[0].rows[0][\"moca:preop:3\"].split(\",\").length);\nconsole.log(\"MOCA2: \"+ctrl.data[0].rows[0][\"moca:preop:2\"]);\nconsole.log(\"MOCA4: \"+ctrl.data[0].rows[0][\"moca:preop:4\"].split(\",\").length);\nhadamard.moca_o = normalize_scale(ctrl.data[0].rows[0][\"moca:preop:3\"]?parseInt(ctrl.data[0].rows[0][\"moca:preop:3\"].split(\",\").length):\"\", \"moca_o\");\nhadamard.moca_v = normalize_scale(ctrl.data[0].rows[0][\"moca:preop:2\"]?(parseFloat(ctrl.data[0].rows[0][\"moca:preop:2\"])>=9?1:0):\"\", \"moca_v\");\nhadamard.moca_m = normalize_scale(ctrl.data[0].rows[0][\"moca:preop:4\"]?parseInt(ctrl.data[0].rows[0][\"moca:preop:4\"].split(\",\").length):\"\", \"moca_m\");\n\n\n\nvar z = Object.entries(hadamard).map((k,v) => k[1]).reduce((partialSum, a) => partialSum + a, 0)+intercept;\n \n\n//console.log(Object.entries(sortObj(hadamard)).map((k,v) => k[1]));\n\nfunction sortObj(obj) {\n    // Sort object as list based on values\n    return Object.keys(obj).map(k => ([k, obj[k]])).sort((a, b) => (b[1] - a[1]));\n}\n\n// check 4 AT score, if >=4 -> V.a. Delir, else use Delir Tool\nif(ctrl.data.length>1 && parseInt(Object.values(ctrl.data[1].rows[0]).filter(x => x!==\"\").pop())>=4){\n    clearOutput();\n    query_string = ctrl.panel.replaceVariables(\"HMSET $Patient delir_prediction 1\");\n    postJSON(query_string);\n} else if(z){\n    console.log(\"Z: \"+z+\", Platt slaled: \"+platt_scaling(z));\n    //htmlnode.querySelector('p[id=\"z\"]').innerHTML = \"Z= \"+z;\n    //htmlnode.querySelector('p[id=\"platt\"]').innerHTML = \"Platt scaled: \"+platt_scaling(z);\n    query_string = ctrl.panel.replaceVariables(\"HMSET $Patient delir_prediction \"+platt_scaling(z));\n    postJSON(query_string); \n    var sorted_hadamard = Object.entries(sortObj(hadamard)).map((k,v) => k[1]);\n    sorted_hadamard[0][1]>0?get_negative_output(sorted_hadamard[0][0],\"neg_1\"):\"\";\n    sorted_hadamard[1][1]>0?get_negative_output(sorted_hadamard[1][0],\"neg_2\"):\"\";\n    sorted_hadamard[2][1]>0?get_negative_output(sorted_hadamard[2][0],\"neg_3\"):\"\";\n    sorted_hadamard[14][1]<0?get_positive_output(sorted_hadamard[14][0],\"pos_1\"):\"\";\n    sorted_hadamard[13][1]<0?get_positive_output(sorted_hadamard[13][0],\"pos_2\"):\"\";\n    sorted_hadamard[12][1]<0?get_positive_output(sorted_hadamard[12][0],\"pos_3\"):\"\";\n    \n}\n\n// post JSON query to Redis DB\nfunction postJSON(query_string, method='post') {\n    var params = {\"queries\":[{\"refId\":\"A\",\"datasource\":{\"uid\":\"glZcolIVz\",\"type\":\"redis-datasource\"},\"type\":\"cli\",\"query\":query_string,\"command\":\"\",\"keyName\":\"\",\"field\":\"\",\"filter\":\"\",\"legend\":\"\",\"value\":\"\",\"path\":\"\",\"cypher\":\"\",\"datasourceId\":7,\"intervalMs\":7200000,\"maxDataPoints\":3}],\"range\":{\"from\":\"2022-01-10T07:05:31.012Z\",\"to\":\"2022-01-10T13:05:31.012Z\",\"raw\":{\"from\":\"now-6h\",\"to\":\"now\"}},\"from\":\"1641798331012\",\"to\":\"1641819931012\"};\n    var xhr = new XMLHttpRequest();\n    var url = '/api/ds/query';\n    xhr.open(\"POST\", url, true);\n    xhr.setRequestHeader(\"Content-Type\", \"application/json\");\n    xhr.onreadystatechange = function () {\n        if (xhr.readyState === 4 && xhr.status === 200) {\n            var json = JSON.parse(xhr.responseText);\n            //console.log(json);\n        }\n    };\n    var data = JSON.stringify(params);\n    xhr.send(data);\n}\n\nfunction get_negative_output(key,node){\n    htmlnode.querySelector('div[id=\"'+node+'\"]').classList = [];\n    htmlnode.querySelector('div[id=\"'+node+'\"]').classList += \"negative\";\n    htmlnode.querySelector('div[id=\"'+node+'\"]').innerHTML = neg_output[key];\n    htmlnode.querySelector('div[id=\"'+node+'\"]').title = tooltip_output[key](restore_raw(hadamard[key], key));\n}\n\nfunction get_positive_output(key,node){\n    htmlnode.querySelector('div[id=\"'+node+'\"]').classList = [];\n    htmlnode.querySelector('div[id=\"'+node+'\"]').classList += \"positive\";\n    htmlnode.querySelector('div[id=\"'+node+'\"]').innerHTML = pos_output[key];\n    htmlnode.querySelector('div[id=\"'+node+'\"]').title = tooltip_output[key](restore_raw(hadamard[key], key));\n}\n\nfunction clearOutput(){\n    [\"neg_1\",\"neg_2\",\"neg_3\",\"pos_1\",\"pos_2\",\"pos_3\"].map(x => htmlnode.querySelector('div[id=\"'+x+'\"]').classList = [\"hidden\"]);\n}",
+      "js_init_code": "",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "comorbidity:1:dementia comorbidity:2:dementia comorbidity:1:bypass cut_to_suture comorbidity:1:asa falls:1 isolation cfs:prior adm_age moca:preop:3 moca:preop:2 moca:preop:4 comorbidity:1:stroke comorbidity:1:myocard comorbidity:1:vascular comorbidity:1:apoplextia comorbidity:1:dementia comorbidity:1:copd comorbidity:1:diabetes comorbidity:1:liver comorbidity:1:kidney",
+          "keyName": "11001",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        },
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "4at:preop 4at:postop:1 4at:postop:3 4at:postop:5 4at:postop:7",
+          "hide": false,
+          "keyName": "11001",
+          "query": "",
+          "refId": "D",
+          "type": "command"
+        },
+        {
+          "command": "",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "keyName": "patient:$Patient:egfr",
+          "query": "TS.GET patient:11001:egfr",
+          "refId": "B",
+          "type": "cli"
+        },
+        {
+          "command": "",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "hide": false,
+          "query": "FT.SEARCH medis_index \"@patient:11001 @slot:preop\" NOCONTENT LIMIT 0 2000 SORTBY position ASC",
+          "refId": "C",
+          "type": "cli"
+        }
+      ],
+      "title": "Delir Prädiktion",
+      "transformations": [
+        {
+          "id": "filterByRefId",
+          "options": {
+            "include": "A|D|B|C"
+          }
+        }
+      ],
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "text",
+                  "index": 1,
+                  "text": "nein"
+                },
+                "1": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "ja"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "Nicht erfasst",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Brille"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "text",
+                        "index": 0,
+                        "text": "keine Brille"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "Brillenträger"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hörprobleme"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "text",
+                        "index": 0,
+                        "text": "keine Hörprobleme"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "Hörprobleme"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hörgerät"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "text",
+                        "index": 0,
+                        "text": "kein Hörgerät"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "trägt Hörgerät"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "isar:1"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "text",
+                        "index": 0,
+                        "text": "War nicht auf regelm. Hilfe angewiesen"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "War auf regelm. Hilfe angewiesen"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "isar:3"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "text",
+                        "index": 0,
+                        "text": "Keine Hospitalisierung vor <6 Monaten"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "Hospitalisierung vor <6 Monaten"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "isar:4"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "text",
+                        "index": 1,
+                        "text": "Keine Sehprobleme"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "Erhebliche Sehprobleme"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "isar:6"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "text",
+                        "index": 1,
+                        "text": "Keine Multimorbidität"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "Multimorbidität"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 27
+      },
+      "id": 48,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "text": {
+          "titleSize": 15,
+          "valueSize": 15
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "sensors:1 isar:4 sensors:2 sensors:3 isar:1 isar:3 isar:6",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Vorzustand: Sensorik & Risiko",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "isar:4": 1,
+              "sensors:1": 0,
+              "sensors:2": 2,
+              "sensors:3": 3
+            },
+            "renameByName": {
+              "glasses": "Brille",
+              "hearing_aid": "Hörgerät",
+              "hearing_problems": "Hörprobleme",
+              "isar:1": "Hilfe",
+              "isar:3": "Hospitalisierung",
+              "isar:4": "Sehprobleme",
+              "sensors:1": "Brille",
+              "sensors:2": "Hörprobleme",
+              "sensors:3": "Hörgerät"
+            }
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "dateFormat": "DD-MM-YYYY",
+                "destinationType": "number",
+                "targetField": "Brille"
+              },
+              {
+                "destinationType": "number",
+                "targetField": "Hörprobleme"
+              },
+              {
+                "destinationType": "number",
+                "targetField": "Hörgerät"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 95,
+      "panels": [],
+      "title": "Vorzustand und Verlaufsdaten",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Gar nicht"
+                },
+                "1": {
+                  "color": "orange",
+                  "index": 1,
+                  "text": "Mit personeller Hilfe"
+                },
+                "2": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Mit Hilfsmitteln"
+                },
+                "3": {
+                  "color": "green",
+                  "index": 3,
+                  "text": "Ohne Schwierigkeiten"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 3,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Life Space"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "from": 7,
+                      "result": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "to": 9
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 3,
+                      "result": {
+                        "color": "yellow",
+                        "index": 1
+                      },
+                      "to": 6
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "red",
+                        "index": 2
+                      },
+                      "to": 2
+                    },
+                    "type": "range"
+                  }
+                ]
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 9
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Barthel Index"
+            },
+            "properties": [
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "from": 67,
+                      "result": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "to": 100
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 34,
+                      "result": {
+                        "color": "yellow",
+                        "index": 1
+                      },
+                      "to": 66
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "red",
+                        "index": 2
+                      },
+                      "to": 33
+                    },
+                    "type": "range"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Stürze /3 Monate"
+            },
+            "properties": [
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 3
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "Keine"
+                      },
+                      "to": 0
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 1,
+                      "result": {
+                        "color": "orange",
+                        "index": 1
+                      },
+                      "to": 2
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 3,
+                      "result": {
+                        "color": "red",
+                        "index": 2
+                      },
+                      "to": 99
+                    },
+                    "type": "range"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "Stürze Bewusstseinsverlust|Angst erneut zu stürzen"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "Nein"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "Ja"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "id": 83,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {
+          "titleSize": 12,
+          "valueSize": 12
+        }
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "life_space:preop life_space:preop:1 life_space:preop:2 life_space:preop:3 bi:prior falls:1 falls:2 falls:3",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Vorzustand: Mobilität und Alltagsfunktion",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "life_space:preop:1",
+                "life_space:preop:2",
+                "life_space:preop:3",
+                "falls:1",
+                "falls:2",
+                "falls:3"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "bi:preop": "Barthel Index",
+              "bi:prior": "Barthel Index",
+              "falls:1": "Stürze /3 Monate",
+              "falls:2": "Stürze Bewusstseinsverlust",
+              "falls:3": "Angst erneut zu stürzen",
+              "life_space:preop": "Life Space",
+              "life_space:preop:1": "In der Wohnung gehen",
+              "life_space:preop:2": "Nach draußen gehen",
+              "life_space:preop:3": "Einkaufen Gehen",
+              "life_space:prior": "Life Space Score",
+              "life_space:prior:1": "In der Wohnung gehen",
+              "life_space:prior:2": "Nach draußen gehen",
+              "life_space:prior:3": "Einkaufen gehen"
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Meta-Empfehlung: Combinations of multiple central nervous system agents should be avoided, especially those involving benzodiazepines, non-benzodiazepine receptor agonists (“Z-drugs”), opioids, or anticholinergic drugs.",
+              "url": "/public/usability_workshop/BGU_ATZ_Delir.pdf"
+            }
+          ],
+          "mappings": [
+            {
+              "options": {
+                "from": 9,
+                "result": {
+                  "color": "red",
+                  "index": 0
+                },
+                "to": 12
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "yellow",
+                  "index": 1
+                },
+                "to": 8
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "green",
+                  "index": 2
+                },
+                "to": 4
+              },
+              "type": "range"
+            }
+          ],
+          "max": 12,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "-"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "-"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "3d postop|5d postop|7d postop"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "NaN"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 33
+      },
+      "id": 71,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Fragebogen",
+          "url": "/d/1t5_pIJ7k/4at?orgId=1&var-patient=UsabilityWorkshop&var-slot=preop"
+        }
+      ],
+      "maxDataPoints": 3,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "4at:preop 4at:postop:1 4at:postop:3 4at:postop:5 4at:postop:7",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Delir: 4 AT",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "4at:preop",
+                "4at:postop:1"
+              ]
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "-",
+            "binary": {
+              "left": "4at:preop",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "4at:preop"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "4at:postop:3",
+            "binary": {
+              "left": "4at:postop:3",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "4at:postop:3"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "4at:postop:5",
+            "binary": {
+              "left": "4at:postop:5",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "4at:postop:5"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "4at:postop:7",
+            "binary": {
+              "left": "4at:postop:7",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "4at:postop:7"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "-": 0,
+              "4at:postop:1": 3,
+              "4at:postop:3": 4,
+              "4at:postop:5": 5,
+              "4at:postop:7": 6,
+              "4at:preop": 2,
+              "4at:prior": 1
+            },
+            "renameByName": {
+              "-": "-",
+              "4at:postop:1": "1d postop",
+              "4at:postop:3": "3d postop",
+              "4at:postop:5": "5d postop",
+              "4at:postop:7": "7d postop",
+              "4at:preop": "präop",
+              "4at:prior": "Vorzustand"
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 67,
+                "result": {
+                  "color": "green",
+                  "index": 0
+                },
+                "to": 100
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 34,
+                "result": {
+                  "color": "yellow",
+                  "index": 1
+                },
+                "to": 66
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "red",
+                  "index": 2
+                },
+                "to": 33
+              },
+              "type": "range"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "3d postop|5d postop|7d postop"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "NaN"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 38
+      },
+      "id": 38,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Fragebogen",
+          "url": "/d/QZZ67Vwnk/barthel-index?orgId=1&var-slot=preop&var-patient=UsabilityWorkshop"
+        }
+      ],
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "bi:prior bi:preop bi:postop:1 bi:postop:3 bi:postop:5 bi:postop:7 zerooo zerooo zerooo",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "ADL: Barthel Index",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "bi:prior",
+                "bi:preop",
+                "bi:postop:1",
+                "zerooo 1",
+                "zerooo 2",
+                "zerooo 3"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "BI": "Barthel Index",
+              "bi:postop:1": "1d postop",
+              "bi:postop:3": "3d postop",
+              "bi:postop:5": "5d postop",
+              "bi:postop:7": "7d postop",
+              "bi:preop": "präop",
+              "bi:prior": "Vorzustand",
+              "time": "Zeitpunkt",
+              "zero 1": "3d postop",
+              "zero 2": "5d postop",
+              "zero 3": "7d postop",
+              "zerooo 1": "3d postop",
+              "zerooo 2": "5d postop",
+              "zerooo 3": "7d postop"
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "aliasColors": {},
+      "css_data": "",
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "doInit": {},
+      "format": "short",
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 0,
+        "y": 42
+      },
+      "handleMetric": {},
+      "html_data": "<div title=\"Empfehlung: Diätberatung anmelden und NRS-Hauptassessment durchführen und Evaluation bzgl. hochkalorischer oder proteinreicher Zusatznahrung, Ursache für Gewichtsverlust klar? z.B. konsumierende Tumor-Erkrankung, schwere Herzinsuffizienz, Depression? Ggf. weitere Abklärung einleiten.\">\n    <p>BMI 19,1 (normal-niedrig)</p>\n    <p><span style=\"color:#f44336;\">In den letzten 3 Monaten Gewicht verloren? <strong>Ja</strong></span></p>\n    <p><span style=\"color:#f44336;\">Nahrungszufuhr in der letzten Woche vermindert? <strong>Ja</strong></span></p>\n    <p>Schwere Erkrankung? Nein</p>\n    <p><span style=\"color:#f44336;\">Malnutrition: <strong>Ja</strong></span></p>\n</div>",
+      "id": 46,
+      "js_code": "",
+      "js_init_code": "",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "malnutrition dysphagia",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Malnutrition NRS & Dysphagie",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "dysphagia": "Dysphagie",
+              "malnutrition": "Malnutrition"
+            }
+          }
+        }
+      ],
+      "type": "aidanmountford-html-panel"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Meta-Empfehlung: For older adults with hip fracture early mobilization, high-frequency physical therapy, and multidisciplinary geriatric trauma programs should be implemented to improve functional outcomes and reduce hospital-acquired complications.",
+              "url": "/d/ZJk5Y-aSz/usability-workshop-p1"
+            }
+          ],
+          "mappings": [
+            {
+              "options": {
+                "from": 7,
+                "result": {
+                  "color": "green",
+                  "index": 0
+                },
+                "to": 10
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 4,
+                "result": {
+                  "color": "yellow",
+                  "index": 1
+                },
+                "to": 6
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "red",
+                  "index": 2
+                },
+                "to": 3
+              },
+              "type": "range"
+            }
+          ],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "-"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "-"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "3d postop|5d postop|7d postop"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "NaN"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 43
+      },
+      "id": 84,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Fragebogen",
+          "url": "/d/ltpcb_w7k/mobilitat-charmi?orgId=1&var-patient=UsabilityWorkshop&var-slot=prior"
+        }
+      ],
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "charmi:prior charmi:postop:1 charmi:postop:3 charmi:postop:5 charmi:postop:7 zerooo zerooo zerooo",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        }
+      ],
+      "title": "Mobilität: CHARMI",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "charmi:prior",
+                "charmi:postop:1",
+                "zerooo 1",
+                "zerooo 2",
+                "zerooo 3"
+              ]
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "-",
+            "binary": {
+              "left": "charmi:prior",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "charmi:prior"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "-": 1,
+              "charmi:postop:1": 2,
+              "charmi:postop:3": 3,
+              "charmi:postop:5": 4,
+              "charmi:postop:7": 5,
+              "charmi:prior": 0
+            },
+            "renameByName": {
+              "-": "-",
+              "Value": "Labels",
+              "charmi:postop:1": "1d postop",
+              "charmi:postop:3": "3d postop",
+              "charmi:postop:5": "5d postop",
+              "charmi:postop:7": "7d postop",
+              "charmi:preop": "-",
+              "charmi:prior": "Vorzustand",
+              "charmi:prior 1": "prior",
+              "charmi:prior 2": "-",
+              "pain:postop:1": "T1",
+              "pain:postop:3": "T2",
+              "pain:postop:5": "T3",
+              "pain:postop:7": "T4",
+              "pain:preop": "T0",
+              "pain:prior": "Vorzustand",
+              "zerooo 1": "3d postop",
+              "zerooo 2": "5d postop",
+              "zerooo 3": "7d postop"
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "glZcolIVz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "from": 7,
+                "result": {
+                  "color": "red",
+                  "index": 0
+                },
+                "to": 10
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 4,
+                "result": {
+                  "color": "yellow",
+                  "index": 1
+                },
+                "to": 6
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "green",
+                  "index": 2
+                },
+                "to": 3
+              },
+              "type": "range"
+            }
+          ],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "-"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "-"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "präop"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "${__data.fields.p_recom}",
+                    "url": "/d/VW9-yW-Sk/usability-workshop-empfehlungen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1d postop"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "${__data.fields.1_recom}",
+                    "url": "/d/VW9-yW-Sk/usability-workshop-empfehlungen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "3d postop"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "${__data.fields.3_recom}",
+                    "url": "/d/VW9-yW-Sk/usability-workshop-empfehlungen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "5d postop"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "${__data.fields.5_recom}",
+                    "url": "/d/VW9-yW-Sk/usability-workshop-empfehlungen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "7d postop"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "${__data.fields.7_recom}",
+                    "url": "/d/VW9-yW-Sk/usability-workshop-empfehlungen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "3d postop|5d postop|7d postop"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "NaN"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 48
+      },
+      "id": 106,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Fragebogen",
+          "url": "/d/wJLWgXb7k/schmerz-verbal-rating-scale?orgId=1&var-patient=UsabilityWorkshop&var-slot=preop"
+        }
+      ],
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.0-beta1",
+      "targets": [
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "pain_preop pain:postop:1 pain:postop:3 pain:postop:5 pain:postop:7 zerooo zerooo zerooo",
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "A",
+          "type": "command"
+        },
+        {
+          "command": "hmget",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "glZcolIVz"
+          },
+          "field": "pain_preop_recom pain:postop:1:recom pain:postop:3:recom pain:postop:5:recom pain:postop:7:recom",
+          "hide": false,
+          "keyName": "$Patient",
+          "query": "",
+          "refId": "B",
+          "type": "command"
+        }
+      ],
+      "title": "Schmerz: NRS",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "pain_preop",
+                "pain:postop:1",
+                "zerooo 1",
+                "zerooo 2",
+                "zerooo 3",
+                "pain_preop_recom",
+                "pain:postop:1:recom",
+                "pain:postop:3:recom",
+                "pain:postop:5:recom",
+                "pain:postop:7:recom"
+              ]
+            }
+          }
+        },
+        {
+          "id": "concatenate",
+          "options": {
+            "frameNameLabel": "frame",
+            "frameNameMode": "drop"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "-",
+            "binary": {
+              "left": "pain_preop",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "pain_preop"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "recom:painnrs": false
+            },
+            "indexByName": {
+              "-": 0,
+              "pain:postop:1": 2,
+              "pain:postop:1:recom": 7,
+              "pain:postop:3": 3,
+              "pain:postop:3:recom": 8,
+              "pain:postop:5": 4,
+              "pain:postop:5:recom": 9,
+              "pain:postop:7": 5,
+              "pain:postop:7:recom": 10,
+              "pain_preop": 1,
+              "pain_preop_recom": 6
+            },
+            "renameByName": {
+              "-": "-",
+              "Value": "Labels",
+              "pain:postop:1": "1d postop",
+              "pain:postop:1:recom": "1_recom",
+              "pain:postop:3": "3d postop",
+              "pain:postop:3:recom": "3_recom",
+              "pain:postop:5": "5d postop",
+              "pain:postop:5:recom": "5_recom",
+              "pain:postop:7": "7d postop",
+              "pain:postop:7:recom": "7_recom",
+              "pain:preop": "präop",
+              "pain:preop:recom": "pain:preop_recom",
+              "pain:prior": "Vorzustand",
+              "pain_preop": "präop",
+              "pain_preop_recom": "p_recom",
+              "recom:painnrs": "recommendation",
+              "zerooo 1": "3d postop",
+              "zerooo 2": "5d postop",
+              "zerooo 3": "7d postop"
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "hide": 2,
+        "name": "Patient",
+        "query": "UsabilityWorkshop",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "2024-04-16T10:00:56.000Z",
+    "to": "2024-04-16T18:47:36.000Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Usability Workshop P1",
+  "uid": "ZJk5Y-aSz",
+  "version": 42,
+  "weekStart": ""
+}

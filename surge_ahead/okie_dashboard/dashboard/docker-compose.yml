@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    container_name: okie-redis
+    ports:
+      - "6379:6379"
+      - "8001:8001"  # RedisInsight web interface
+    volumes:
+      - redis_data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - okie-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: okie-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=redis-datasource,aidanmountford-html-panel
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./:/var/lib/grafana/dashboards
+    depends_on:
+      - redis
+    networks:
+      - okie-network
+
+volumes:
+  redis_data:
+  grafana_data:
+
+networks:
+  okie-network:
+    driver: bridge
