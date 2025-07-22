@@ -1,0 +1,236 @@
+OKIE_data_list = [
+    
+    # Patienten- und Studienbezogen
+    'label', # Studienkürzel
+    'id', # Probanden ID
+    'sex', # Geschlecht
+    # 'birthday', # Geburtstag
+    'adm_age', # Alter
+    'weight_preop', # Gewicht präoperativ
+    'size_preop', # Körpergräße präoperativ
+    'bmi_preop', # BMI präoperativ
+    'eve', # Einverständniserklärung
+    'secrecy', # Schweigepflichtentbindung
+    'dropout', # Drop-Out?
+    'dropout_date', # Zeitpunkt des Drop-Out
+    'deletion', # Teilnehmer wünscht Datenläschung
+    'station', # Station
+    'admission_hospital_date', # Aufnahme Krankenhaus Datum
+    'admission_hospital_time', # Aufnahme Krankenhaus Zeit
+    'admission_date', # Einschluss Datum
+    'admission_time', # Einschluss Zeit
+    'discharge_date', # Entlassung Datum
+    'discharge_time', # Entlassung Zeit
+    'los_days', # Aufenthaltsdauer (Tage)
+    'dx', # Hauptdiagnose
+    'dx_code', # ICD Code der Hauptdiagnose
+    'ops_name', # Bezeichnung der Operation
+    'ops_code', # OPS Code der Operation
+    'op_type', # Notfall Operation?
+    'operationdate', # Operation Datum
+    'operationtime', # Operation Zeit
+    'time_to_operation', # Zeit von Aufnahme bis Operation
+    'cut_date', # Beginn Operation Datum
+    'cut_time', # Beginn Operation Zeit
+    'suture_date', # Ende Operation Datum
+    'suture_time', # Ende Operation Zeit
+    'cut_to_suture', # Dauer der Operation (minuten)
+    'load', # Belastbarkeit nach Operation
+    'los_icu', # Liegedauer auf Überwachungs-/Intensivstation
+    'isolation_preop', # Isolationsstatus
+    'sociodemographic_marital', # Familienstand
+    'sociodemographic_children', # Kinder
+    'sociodemographic_num_children', # Wenn ja, wie viele Kinder?
+    'social_grade', # Pflegegrad
+    'social_accomodation', # Wohnform (Haus, Wohnung, Pflegeheim, etc.)
+    'social_other_accomodation', # Wohnform (other)
+    'social_living', # Mit wem leben Sie zusammen?
+    'social_other_living', # Zusammenleben (other)
+    'social_stairs', # Treppensteigen
+    'social_num_stairs', # Stufen
+    'social_num_contacts', # Wie viele Sozialkontakte?
+    'social_tools', # Hilfsmittel
+    'social_help', # Erhält Hilfe
+    'social_help_from', # Hilfe von wem?
+    'patientcentered_person_exists', # Betreuer
+    'patientcentered_docs', # Betreuungsverfügung & Vollmacht
+    'patientcentered_other_docs', # anderes Dokument
+    'patientcentered_docs_present', # Dokument lieg vor
+    'patientcentered_will_exists', # Patientenverfügung
+    'sensors_1', # Brille
+    'sensors_2', # Hörstörung
+    'sensors_3', # Hörgerät
+    
+    # Assessments
+    'isar_1', # ISAR Frage 1
+    'isar_2', # ISAR Frage 2
+    'isar_3', # ISAR Frage 3
+    'isar_4', # ISAR Frage 4
+    'isar_5', # ISAR Frage 5
+    'isar_6', # ISAR Frage 6
+    'isar', # ISAR Gesamtpunktzahl
+    'pain_preop', # Schmerzen (NRS) präoperativ
+    'pain_postop_1', # Schmerzen (NRS) postoperativ Tag 1
+    'pain_postop_3', # Schmerzen (NRS) postoperativ Tag 3
+    'bi_prior_1', # Barthel-Index vor Erkrankung Frage 1
+    'bi_prior_2', # Barthel-Index vor Erkrankung Frage 2
+    'bi_prior_3', # Barthel-Index vor Erkrankung Frage 3
+    'bi_prior_4', # Barthel-Index vor Erkrankung Frage 4
+    'bi_prior_5', # Barthel-Index vor Erkrankung Frage 5
+    'bi_prior_6', # Barthel-Index vor Erkrankung Frage 6
+    'bi_prior_7', # Barthel-Index vor Erkrankung Frage 7
+    'bi_prior_8', # Barthel-Index vor Erkrankung Frage 8
+    'bi_prior_9', # Barthel-Index vor Erkrankung Frage 9
+    'bi_prior_10', # Barthel-Index vor Erkrankung Frage 10
+    'bi_prior', # Barthel-Index vor Erkrankung Gesamtpunktzahl
+    'bi_postop_3_1', # Barthel-Index postoperativ Tag 3 Frage 1
+    'bi_postop_3_2', # Barthel-Index postoperativ Tag 3 Frage 2
+    'bi_postop_3_3', # Barthel-Index postoperativ Tag 3 Frage 3
+    'bi_postop_3_4', # Barthel-Index postoperativ Tag 3 Frage 4
+    'bi_postop_3_5', # Barthel-Index postoperativ Tag 3 Frage 5
+    'bi_postop_3_6', # Barthel-Index postoperativ Tag 3 Frage 6
+    'bi_postop_3_7', # Barthel-Index postoperativ Tag 3 Frage 7
+    'bi_postop_3_8', # Barthel-Index postoperativ Tag 3 Frage 8
+    'bi_postop_3_9', # Barthel-Index postoperativ Tag 3 Frage 9
+    'bi_postop_3_10', # Barthel-Index postoperativ Tag 3 Frage 10
+    'bi_postop_3', # Barthel-Index postoperativ Tag 3 Gesamtpunktzahl
+    # '4at_postop_1_1', # 4AT postoperativ Tag 1 Frage 1
+    # '4at_postop_1_2', # 4AT postoperativ Tag 1 Frage 2
+    # '4at_postop_1_3', # 4AT postoperativ Tag 1 Frage 3
+    # '4at_postop_1_4', # 4AT postoperativ Tag 1 Frage 4
+    # '4at_postop_1_5', # 4AT postoperativ Tag 1 Bonusfrage
+    # '4at_postop_1', # 4AT postoperativ Tag 1 Gesamtpunktzahl
+    # '4at_postop_3_1', # 4AT postoperativ Tag 3 Frage 1
+    # '4at_postop_3_2', # 4AT postoperativ Tag 3 Frage 2
+    # '4at_postop_3_3', # 4AT postoperativ Tag 3 Frage 3
+    # '4at_postop_3_4', # 4AT postoperativ Tag 3 Frage 4
+    # '4at_postop_3_5', # 4AT postoperativ Tag 3 Bonusfrage 
+    # '4at_postop_3', # 4AT postoperativ Tag 3 Gesamtpunktzahl
+    'moca_preop_1', # MoCA präoperativ Frage 1
+    'moca_preop_2', # MoCA präoperativ Frage 2
+    'moca_preop_3', # MoCA präoperativ Frage 3
+    'moca_preop_4', # MoCA präoperativ Frage 4a
+    'moca_preop_5', # MoCA präoperativ Frage 4b
+    'moca_preop', # MoCA präoperativ Gesamtpunktzahl
+    'phq4_prior_1', # PHQ4 präoperativ Frage 1
+    'phq4_prior_2', # PHQ4 präoperativ Frage 2
+    'phq4_prior_3', # PHQ4 präoperativ Frage 3
+    'phq4_prior_4', # PHQ4 präoperativ Frage 4
+    # 'phq4_prior', # PHQ4 präoperativ Gesamtpunktzahl
+    'malnutrition_1', # NRS präoperativ Frage 1
+    'malnutrition_2', # NRS präoperativ Frage 2
+    'malnutrition_3', # NRS präoperativ Frage 3
+    'malnutrition', # NRS präoperativ Gesamtpunktzahl
+    'number_of_medications', # Anzahl Dauermedikamente
+    'falls_1', # Stürze in den letzten 3 Monaten
+    'falls_2', # Bewusstlosigkeit
+    'charmi_prior', # CHARMI vor Erkrankung
+    'charmi_postop_3', # CHARMI postoperativ Tag 3
+    'life_space_prior_1', # New Mobility Index vor Erkrankung Frage 1
+    'life_space_prior_2', # New Mobility Index vor Erkrankung Frage 2
+    'life_space_prior_3', # New Mobility Index vor Erkrankung Frage 3
+    'life_space_prior', # New Mobility Index vor Erkrankung Gesamtpunktzahl
+    'cfs_prior', # Clinical Frailty Scale
+    'comorbidity_1_urgency', # Notfall?
+    'comorbidity_1_asa', # ASA Klasse
+    'comorbidity_1_nyha', # Herzinsuffizienz
+    'comorbidity_1_aspir', # Aspirationsgefahr
+    'comorbidity_1_alcohol', # Alkoholabusus
+    'comorbidity_1_nicotin', # Nikotinabusus
+    'comorbidity_1_drugs', # Drogenabusus
+    'comorbidity_1_allergies', # Allergien
+    'comorbidity_1_allergies_details', # Allergien Details
+    'comorbidity_1_size', # Größe
+    'comorbidity_1_weight', # Körpergewicht
+    'comorbidity_1_bpm', # Herzfrequenz präoperativ
+    'comorbidity_1_rrsys', # Blutdruck systolisch präoperativ
+    'comorbidity_1_rrdia', # Blutdruck diastolisch präoperativ
+    'comorbidity_1_risks', # Spezielle Operations-Risiken
+    'comorbidity_1_antikoagulation', # Antikoagulation
+    'comorbidity_1_ekg', # EKG
+    'comorbidity_1_myocard', # Herzleistung
+    'comorbidity_1_coronary', # Koronarfunktion
+    'comorbidity_1_bypass', # Koronarer Bypass
+    'comorbidity_1_ptca', # PTCA (Koronarintervention)
+    'comorbidity_1_valve', # Herzklappen
+    'comorbidity_1_stroke', # Schlaganfall
+    'comorbidity_1_bp', # Blutdruck (Diagnosen)
+    'comorbidity_1_vascular', # Anderen Gefäßerkrankungen
+    'comorbidity_1_respiratory', # Atemwegserkrankungen
+    'comorbidity_1_liver', # Lebererkrankung
+    'comorbidity_1_kidney', # Niereninsuffizienz
+    'comorbidity_1_muscular', # Muskelerkrankungen
+    'comorbidity_1_diabetes', # Diabetes Mellitus
+    'comorbidity_1_metabolism', # Weitere Stoffwechselekrankungen
+    'comorbidity_1_neurologic', # Neurologische Erkrankung
+    'comorbidity_1_apoplextia', # Residuen nach Schlaganfall
+    'comorbidity_1_consciousness', # Bewusstsein
+    'comorbidity_1_dementia', # Demenz (Anäsethsiediagnose)
+    'comorbidity_1_teeth', # Zahnstatus
+    'comorbidity_2_dementia', # Demenz (Eigen- und Aktenanamnese)
+    'comorbidity_2_parkinson', # Parkinson
+    'comorbidity_2_depression', # Depression
+    'vitals_postop_1_bp', # Blutdruck postoperativ Tag 1
+    'vitals_postop_1_bpm', # Herzfrequenz postoperativ Tag 1
+    'vitals_postop_1_O2', # Sauerstoffsättigun postoperativ Tag 1
+    'vitals_postop_1_temp', # Temperatur postoperativ Tag 1
+    'vitals_postop_3_bp', # Blutdruck postoperativ Tag 3
+    'vitals_postop_3_bpm', # Herzfrequenz postoperativ Tag 3
+    'vitals_postop_3_O2', # Sauerstoffsättigun postoperativ Tag 3
+    'vitals_postop_3_temp', # Temperatur postoperativ Tag 3
+
+    # Studiendaten
+    'weight_followup', # Gewicht nach 3 Monaten
+    'size_followup', # Körpergröße nach 3 Monaten
+    # 'bmi_followup', # BMI nach 3 Monaten
+    'pain_followup', # Schmerzen (NRS) nach 3 Monaten
+    'moca_followup_1', # MoCA nach 3 Monaten Frage 1
+    'moca_followup_2', # MoCA nach 3 Monaten Frage 2
+    'moca_followup_3', # MoCA nach 3 Monaten Frage 3
+    'moca_followup_4', # MoCA nach 3 Monaten Frage 4a
+    'moca_followup_5', # MoCA nach 3 Monaten Frage 4b
+    'moca_followup', # MoCA nach 3 Monaten Gesamtpunktzahl
+    'phq4_followup_1', # PHQ4 nach 3 Monaten Frage 1
+    'phq4_followup_2', # PHQ4 nach 3 Monaten Frage 2
+    'phq4_followup_3', # PHQ4 nach 3 Monaten Frage 3
+    'phq4_followup_4', # PHQ4 nach 3 Monaten Frage 4
+    'phq4_followup', # PHQ4 nach 3 Monaten Gesamtpunktzahl
+    'malnutrition_followup_1', # NRS nach 3 Monaten Frage 1
+    'malnutrition_followup_2', # NRS nach 3 Monaten Frage 2
+    'malnutrition_followup_3', # NRS nach 3 Monaten Frage 3
+    'malnutrition_followup', # NRS nach 3 Monaten Gesamtpunktzahl
+    'life_space_followup_1', # New Mobility Index nach 3 Monaten Frage 1
+    'life_space_followup_2', # New Mobility Index nach 3 Monaten Frage 2
+    'life_space_followup_3', # New Mobility Index nach 3 Monaten Frage 3
+    'life_space_followup', # New Mobility Index nach 3 Monaten Gesamtpunktzahl
+    'charmi_followup', # CHARMI nach 3 Monaten
+    'eq_preop_1', # EQ5D5L präoperativ Frage 1
+    'eq_preop_2', # EQ5D5L präoperativ Frage 2
+    'eq_preop_3', # EQ5D5L präoperativ Frage 3
+    'eq_preop_4', # EQ5D5L präoperativ Frage 4
+    'eq_preop_5', # EQ5D5L präoperativ Frage 5
+    'eq_followup_1', # EQ5D5L nach 3 Monaten Frage 1
+    'eq_followup_2', # EQ5D5L nach 3 Monaten Frage 2
+    'eq_followup_3', # EQ5D5L nach 3 Monaten Frage 3
+    'eq_followup_4', # EQ5D5L nach 3 Monaten Frage 4
+    'eq_followup_5', # EQ5D5L nach 3 Monaten Frage 5
+    # 'discharge_geriatrician_0', # Entlasseinschätzung Geriater konsentiert
+    # 'discharge_geriatrician_1', # Entlasseinschätzung Geriater Visite 1
+    # 'discharge_geriatrician_2', # Entlasseinschätzung Geriater Visite 2
+    # 'discharge_geriatrician_3', # Entlasseinschätzung Geriater Visite 3
+    # 'discharge_geriatrician_4', # Entlasseinschätzung Geriater Visite 4
+    # 'discharge_general', # Entlassdestination OKIE: Standard of Care, DOKIE: mit Intervention
+    'coc_gt', # Entlassdestination Ground Truth
+    'coc_soc', # Entlassdestination Standard of Care
+    'dekubiti_preop_1', # Chronische Wunden / Dekubiti präoperativ
+    'dekubiti_discharge_1', # Chronische Wunden / Dekubiti bei Entlassung
+    'dekubiti_followup_1', # Chronische Wunden / Dekubiti nach 3 Monaten
+    'dekubiti_preop_2', # Chronische Wunden / Dekubiti präoperativ Beschreibung
+    'dekubiti_discharge_2', # Chronische Wunden / Dekubiti bei Entlassung Beschreibung
+    'dekubiti_followup_2', # Chronische Wunden / Dekubiti nach 3 Monaten Beschreibung
+    
+    # Unterliegen noch Änderungen
+    'patientcentered_goal_1', # Patientenzentrierte Ziele Frage 1
+    'patientcentered_goal_2', # Patientenzentrierte Ziele Frage 2
+
+]

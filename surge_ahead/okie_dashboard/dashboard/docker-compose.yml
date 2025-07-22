@@ -1,43 +1,46 @@
-version: '3.8'
-
+# Define all services for the Okie Dashboard application
 services:
+  # Redis database service - stores application data
   redis:
-    image: redis/redis-stack-server:latest
-    container_name: okie-redis
+    image: redis:latest                                    # Use official Redis image
+    platform: linux/arm64                                 # Specify ARM64 platform for Apple Silicon
+    container_name: okie-redis                            # Custom container name for easy identification
     ports:
-      - "6379:6379"
-      - "8001:8001"  # RedisInsight web interface
+      - "6379:6379"                                       # Expose Redis default port
     volumes:
-      - redis_data:/data
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
-    command: redis-server /usr/local/etc/redis/redis.conf
+      - redis_data:/data                                  # Persist Redis data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf     # Mount custom Redis configuration
+    command: redis-server /usr/local/etc/redis/redis.conf # Start Redis with custom config
     networks:
-      - okie-network
+      - okie-network                                      # Connect to custom network
 
+  # Grafana visualization service - creates dashboards and visualizations
   grafana:
-    image: grafana/grafana:latest
-    container_name: okie-grafana
+    image: grafana/grafana:latest                         # Use official Grafana image
+    container_name: okie-grafana                          # Custom container name
     ports:
-      - "3001:3000"
+      - "3001:3000"                                       # Map Grafana port 3000 to host port 3001
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-      - GF_INSTALL_PLUGINS=redis-datasource,aidanmountford-html-panel
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_SECURITY_ADMIN_PASSWORD=admin                 # Set admin password
+      - GF_INSTALL_PLUGINS=redis-datasource,yesoreyeram-infinity-datasource  # Install required plugins
+      - GF_AUTH_ANONYMOUS_ENABLED=true                   # Enable anonymous access
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin                 # Give admin role to anonymous users
+      - GF_AUTH_DISABLE_LOGIN_FORM=true                  # Disable login form (auto-login)
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./:/var/lib/grafana/dashboards
+      - grafana_data:/var/lib/grafana                     # Persist Grafana data
+      - ./grafana/provisioning:/etc/grafana/provisioning # Mount provisioning configs
+      - ./:/var/lib/grafana/dashboards                   # Mount dashboard files
     depends_on:
-      - redis
+      - redis                                             # Wait for Redis to start first
     networks:
-      - okie-network
+      - okie-network                                      # Connect to custom network
 
+# Define persistent volumes for data storage
 volumes:
-  redis_data:
-  grafana_data:
+  redis_data:                                             # Volume for Redis data persistence
+  grafana_data:                                           # Volume for Grafana data persistence
 
+# Define custom network for service communication
 networks:
-  okie-network:
-    driver: bridge
+  okie-network:                                           # Custom network for inter-service communication
+    driver: bridge                                        # Use bridge driver for local networking

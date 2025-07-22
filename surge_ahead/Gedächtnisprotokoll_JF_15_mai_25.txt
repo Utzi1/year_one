@@ -1,0 +1,13 @@
+Gedächtnisprotokoll des SurgeAhead Jour-fix am 15. Mai 2025
+
+Besprechung der historischen entwicklung der eingabemaske
+Sekundäre Erfassung im Dashboard nach Eingabe in secutrial als mögliche Option
+was ist medizinproduktrelevant und was ist studienrelevant?
+Noch mal vermittelt wie wichtig eindeutige anforderungen sind
+Darauf hingewiesen, dass diese sich nicht verändern dürfen
+Medizinproduktrelevantes im dashboard behalten
+ SurgeAhead soll sich noch mal überlegen was relevant ist
+Eingabe für das Dashboard (mit Klarnamen) NUR über die von uns zur verfügung gestellt Eingabemaske möglich
+
+> Secutrial für die studie und dashboard fürs medizinprodukt
+
